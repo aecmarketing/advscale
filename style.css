@@ -442,35 +442,49 @@ ul {
 }
 
 /* ============================================================
-   PILARES
+   CARROSSEL - PILARES
    ============================================================ */
 .pillars {
   background: var(--color-white);
+  overflow: hidden;
 }
 
-.pillars__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
+.carousel {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
-.pillar-card {
+.carousel__track-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  padding: 20px 16px;
   background: var(--color-white);
   border: 1px solid #e5e7eb;
   border-radius: var(--radius);
-  padding: 28px 24px;
+  box-shadow: 0 2px 8px rgba(6, 30, 78, 0.04);
   transition:
     box-shadow var(--transition),
     transform var(--transition);
-  box-shadow: 0 2px 8px rgba(6, 30, 78, 0.04);
+  min-height: 320px;
 }
 
-.pillar-card:hover {
+.carousel__slide:hover {
   box-shadow: var(--shadow);
-  transform: translateY(-4px);
 }
 
-.pillar-card__icon {
+.carousel__slide .pillar-card__icon {
   width: 48px;
   height: 48px;
   background: rgba(218, 173, 87, 0.12);
@@ -483,7 +497,7 @@ ul {
   margin-bottom: 16px;
 }
 
-.pillar-card__title {
+.carousel__slide .pillar-card__title {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-primary);
@@ -492,28 +506,28 @@ ul {
   font-family: var(--font-family-brand);
 }
 
-.pillar-card__text {
+.carousel__slide .pillar-card__text {
   font-size: 0.95rem;
   color: var(--color-gray);
   margin-bottom: 12px;
   line-height: 1.6;
 }
 
-.pillar-card__text strong {
+.carousel__slide .pillar-card__text strong {
   color: var(--color-primary);
 }
 
-.pillar-card__list {
+.carousel__slide .pillar-card__list {
   font-size: 0.9rem;
   color: var(--color-text);
 }
 
-.pillar-card__list li {
+.carousel__slide .pillar-card__list li {
   padding: 4px 0 4px 20px;
   position: relative;
 }
 
-.pillar-card__list li::before {
+.carousel__slide .pillar-card__list li::before {
   content: "›";
   position: absolute;
   left: 0;
@@ -521,8 +535,109 @@ ul {
   font-weight: 700;
 }
 
-.pillar-card--full {
-  grid-column: 1 / -1;
+/* Controles do Carrossel */
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.carousel__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--color-secondary);
+  background: transparent;
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.carousel__btn:hover,
+.carousel__btn:focus-visible {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.carousel__btn:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.carousel__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.carousel__btn:disabled:hover {
+  background: transparent;
+  color: var(--color-secondary);
+}
+
+/* Dots */
+.carousel__dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.carousel__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #d1d5db;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    transform var(--transition);
+  padding: 0;
+}
+
+.carousel__dot:hover {
+  transform: scale(1.2);
+}
+
+.carousel__dot--active {
+  background: var(--color-secondary);
+  transform: scale(1.15);
+  width: 28px;
+  border-radius: 20px;
+}
+
+.carousel__dot:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* Barra de progresso */
+.carousel__progress {
+  width: 100%;
+  max-width: 400px;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  margin: 16px auto 0;
+  overflow: hidden;
+}
+
+.carousel__progress-bar {
+  height: 100%;
+  background: var(--color-secondary);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.3s linear;
 }
 
 /* ============================================================
@@ -975,8 +1090,9 @@ ul {
     font-size: 2.2rem;
   }
 
-  .pillars__grid {
-    grid-template-columns: 1fr 1fr;
+  .carousel__slide {
+    padding: 28px 24px;
+    min-height: 360px;
   }
 
   .audience__list {
@@ -1012,6 +1128,25 @@ ul {
   .footer__logo-img {
     height: 64px;
     max-width: 240px;
+  }
+
+  .carousel__controls {
+    gap: 24px;
+  }
+
+  .carousel__btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .carousel__dot {
+    width: 14px;
+    height: 14px;
+  }
+
+  .carousel__dot--active {
+    width: 32px;
   }
 }
 
@@ -1060,12 +1195,9 @@ ul {
     font-size: 1.6rem;
   }
 
-  .pillars__grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .pillar-card--full {
-    grid-column: 2 / 3;
+  .carousel__slide {
+    padding: 32px 28px;
+    min-height: 380px;
   }
 
   .flow__steps {
@@ -1141,5 +1273,16 @@ ul {
   .footer__logo-img {
     height: 38px;
     max-width: 140px;
+  }
+
+  .carousel__slide {
+    padding: 16px 14px;
+    min-height: 280px;
+  }
+
+  .carousel__btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
   }
 }

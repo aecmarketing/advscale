@@ -1,7 +1,8 @@
 /**
  * ============================================================
  * ADV SCALE - Scripts
- * Segurança, Menu Mobile, Contador, Animações, Formulário
+ * Segurança, Menu Mobile, Contador, Animações, Formulário, Carrossel
+ * Integração com Google Sheets via Apps Script
  * ============================================================
  */
 
@@ -17,12 +18,10 @@
   });
 
   document.addEventListener("keydown", function (e) {
-    // F12
     if (e.key === "F12" || e.keyCode === 123) {
       e.preventDefault();
       return false;
     }
-    // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
     if (
       e.ctrlKey &&
       e.shiftKey &&
@@ -54,7 +53,6 @@
       }
     });
 
-    // Fechar menu ao clicar em um link (mobile)
     const navLinks = mainNav.querySelectorAll(".header__nav-link");
     navLinks.forEach(function (link) {
       link.addEventListener("click", function () {
@@ -67,7 +65,6 @@
       });
     });
 
-    // Fechar menu ao clicar fora (mobile)
     document.addEventListener("click", function (e) {
       if (window.innerWidth < 1024) {
         const header = document.querySelector(".header");
@@ -94,15 +91,13 @@
 
     if (!daysEl) return;
 
-    // Definir data do evento: 18 de setembro do ano atual ou próximo
     const now = new Date();
     let targetYear = now.getFullYear();
-    const targetMonth = 8; // Setembro (0-based: 8 = Setembro)
+    const targetMonth = 8;
     const targetDay = 18;
 
     let targetDate = new Date(targetYear, targetMonth, targetDay, 0, 0, 0);
 
-    // Se já passou do dia 18 de setembro, usar o ano que vem
     if (now > targetDate) {
       targetDate = new Date(targetYear + 1, targetMonth, targetDay, 0, 0, 0);
     }
@@ -112,7 +107,6 @@
       let diff = targetDate - current;
 
       if (diff <= 0) {
-        // Evento começou ou já passou
         daysEl.textContent = "00";
         hoursEl.textContent = "00";
         minutesEl.textContent = "00";
@@ -147,7 +141,6 @@
     const fadeElements = document.querySelectorAll(".fade-in");
 
     if (!("IntersectionObserver" in window)) {
-      // Fallback: exibir todos os elementos
       fadeElements.forEach(function (el) {
         el.classList.add("is-visible");
       });
@@ -159,8 +152,6 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-            // Opcional: parar de observar após exibir
-            // observer.unobserve(entry.target);
           }
         });
       },
@@ -178,7 +169,146 @@
   initFadeIn();
 
   // ============================================================
-  // 5. FORMULÁRIO DE PRÉ-CADASTRO (validação front-end)
+  // 5. CARROSSEL AUTOMÁTICO
+  // ============================================================
+  function initCarousel() {
+    const track = document.getElementById("carouselTrack");
+    const prevBtn = document.getElementById("carouselPrev");
+    const nextBtn = document.getElementById("carouselNext");
+    const dotsContainer = document.getElementById("carouselDots");
+    const progressBar = document.getElementById("carouselProgress");
+
+    if (!track) return;
+
+    const slides = track.querySelectorAll(".carousel__slide");
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+    let intervalId = null;
+    const AUTOPLAY_INTERVAL = 4000;
+
+    slides.forEach(function (_, index) {
+      const dot = document.createElement("button");
+      dot.classList.add("carousel__dot");
+      if (index === 0) dot.classList.add("carousel__dot--active");
+      dot.setAttribute("role", "tab");
+      dot.setAttribute("aria-label", "Ir para slide " + (index + 1));
+      dot.dataset.index = index;
+      dot.addEventListener("click", function () {
+        goTo(index);
+        resetAutoplay();
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll(".carousel__dot");
+
+    function updateCarousel() {
+      const slideWidth = slides[0].offsetWidth;
+      track.style.transform =
+        "translateX(-" + currentIndex * slideWidth + "px)";
+
+      dots.forEach(function (dot, index) {
+        dot.classList.toggle("carousel__dot--active", index === currentIndex);
+      });
+
+      const progress = ((currentIndex + 1) / totalSlides) * 100;
+      progressBar.style.width = progress + "%";
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === totalSlides - 1;
+    }
+
+    function goTo(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        goTo(currentIndex + 1);
+      } else {
+        goTo(0);
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        goTo(currentIndex - 1);
+      } else {
+        goTo(totalSlides - 1);
+      }
+    }
+
+    function resetAutoplay() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+      startAutoplay();
+    }
+
+    function startAutoplay() {
+      if (intervalId) return;
+      intervalId = setInterval(nextSlide, AUTOPLAY_INTERVAL);
+    }
+
+    function stopAutoplay() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    }
+
+    prevBtn.addEventListener("click", function () {
+      prevSlide();
+      resetAutoplay();
+    });
+
+    nextBtn.addEventListener("click", function () {
+      nextSlide();
+      resetAutoplay();
+    });
+
+    const carousel = document.getElementById("carousel");
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+    carousel.addEventListener("touchstart", stopAutoplay);
+    carousel.addEventListener("touchend", startAutoplay);
+
+    let resizeTimeout;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function () {
+        updateCarousel();
+      }, 250);
+    });
+
+    updateCarousel();
+    startAutoplay();
+
+    carousel.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        prevSlide();
+        resetAutoplay();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        nextSlide();
+        resetAutoplay();
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCarousel);
+  } else {
+    initCarousel();
+  }
+
+  // ============================================================
+  // 6. FORMULÁRIO DE PRÉ-CADASTRO - GOOGLE SHEETS
   // ============================================================
   const form = document.getElementById("preRegisterForm");
   if (form) {
@@ -191,7 +321,18 @@
     const phoneError = document.getElementById("phoneError");
     const cityError = document.getElementById("cityError");
     const successMsg = document.getElementById("formSuccess");
+    const submitBtn = form.querySelector(".form__submit");
 
+    // ============================================================
+    // CONFIGURAÇÃO DO GOOGLE SHEETS - URL FORNECIDO POR VOCÊ
+    // ============================================================
+    const GOOGLE_SHEETS_URL =
+      "https://script.google.com/macros/s/AKfycbzTukETXDOv6vwiFX5TAQ4w1nRPCft53Etygw12ZBeQovgujgFDI6HXSsoWAT2jZ-hVbg/exec";
+    const REDIRECT_URL = "https://pay.kiwify.com.br/mDGPSbT";
+
+    // ============================================================
+    // FUNÇÕES DE VALIDAÇÃO
+    // ============================================================
     function setError(input, errorEl, message) {
       input.classList.add("is-invalid");
       errorEl.textContent = message;
@@ -235,7 +376,6 @@
 
     function validatePhone() {
       const val = phoneInput.value.trim();
-      // Aceita formatos: (00) 00000-0000 ou 00000000000
       const cleaned = val.replace(/\D/g, "");
       if (cleaned.length < 10 || cleaned.length > 11) {
         setError(
@@ -263,13 +403,41 @@
       return true;
     }
 
-    // Validação em tempo real (ao perder o foco)
+    // ============================================================
+    // FUNÇÃO DE ENVIO PARA O GOOGLE SHEETS
+    // ============================================================
+    async function sendToGoogleSheets(data) {
+      try {
+        const response = await fetch(GOOGLE_SHEETS_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        // Com no-cors, a resposta não é acessível, mas se não houve erro de rede,
+        // o envio foi bem-sucedido
+        return { success: true, message: "Dados enviados com sucesso!" };
+      } catch (error) {
+        console.error("Erro ao enviar para o Google Sheets:", error);
+        return {
+          success: false,
+          message: "Erro ao enviar dados. Tente novamente.",
+        };
+      }
+    }
+
+    // ============================================================
+    // EVENTOS DE VALIDAÇÃO EM TEMPO REAL
+    // ============================================================
     nameInput.addEventListener("blur", validateName);
     emailInput.addEventListener("blur", validateEmail);
     phoneInput.addEventListener("blur", validatePhone);
     cityInput.addEventListener("blur", validateCity);
 
-    // Máscara simples para telefone (durante digitação)
+    // Máscara de telefone
     phoneInput.addEventListener("input", function () {
       let val = this.value.replace(/\D/g, "");
       if (val.length > 11) val = val.slice(0, 11);
@@ -286,46 +454,77 @@
       this.value = formatted;
     });
 
-    // Envio do formulário
-    form.addEventListener("submit", function (e) {
+    // ============================================================
+    // SUBMIT DO FORMULÁRIO
+    // ============================================================
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      // Validar todos os campos
       const isNameValid = validateName();
       const isEmailValid = validateEmail();
       const isPhoneValid = validatePhone();
       const isCityValid = validateCity();
 
-      if (isNameValid && isEmailValid && isPhoneValid && isCityValid) {
-        // Simular envio com sucesso
-        successMsg.style.display = "block";
-        form.querySelector(".form__submit").disabled = true;
-        form.querySelector(".form__submit").innerHTML =
-          '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Enviando...';
-
-        setTimeout(function () {
-          form.querySelector(".form__submit").disabled = false;
-          form.querySelector(".form__submit").innerHTML =
-            '<i class="fas fa-paper-plane" aria-hidden="true"></i> Garantir Minha Vaga Agora';
-          // Resetar campos (opcional)
-          // form.reset();
-          // Para manter a mensagem de sucesso, não resetamos
-          // Apenas desabilitamos os campos
-          form.querySelectorAll(".form__input").forEach(function (input) {
-            input.disabled = true;
-          });
-        }, 1200);
-      } else {
-        // Focar no primeiro campo com erro
+      if (!isNameValid || !isEmailValid || !isPhoneValid || !isCityValid) {
         const firstInvalid = form.querySelector(".form__input.is-invalid");
         if (firstInvalid) {
           firstInvalid.focus();
         }
+        return;
+      }
+
+      // Preparar dados para envio
+      const formData = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim(),
+        city: cityInput.value.trim(),
+        source: "ADV Scale Landing Page",
+        event_date: "18 e 19 de setembro",
+      };
+
+      // Desabilitar botão e mostrar loading
+      submitBtn.disabled = true;
+      submitBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Enviando...';
+
+      try {
+        // Enviar dados para o Google Sheets
+        const result = await sendToGoogleSheets(formData);
+
+        if (result.success !== false) {
+          // Sucesso!
+          successMsg.style.display = "block";
+          form.querySelectorAll(".form__input").forEach(function (input) {
+            input.disabled = true;
+          });
+          submitBtn.innerHTML =
+            '<i class="fas fa-check-circle" aria-hidden="true"></i> Enviado com Sucesso!';
+
+          // Redirecionar após 2 segundos
+          setTimeout(function () {
+            window.location.href = REDIRECT_URL;
+          }, 2000);
+        } else {
+          // Erro no envio
+          submitBtn.innerHTML =
+            '<i class="fas fa-exclamation-circle" aria-hidden="true"></i> Erro. Tente novamente.';
+          submitBtn.disabled = false;
+          console.error("Erro no envio:", result);
+        }
+      } catch (error) {
+        // Erro de rede ou outro
+        submitBtn.innerHTML =
+          '<i class="fas fa-exclamation-circle" aria-hidden="true"></i> Erro. Tente novamente.';
+        submitBtn.disabled = false;
+        console.error("Erro no envio:", error);
       }
     });
   }
 
   // ============================================================
-  // 6. SCROLL SUAVE PARA LINKS ÂNCORA (garantia extra)
+  // 7. SCROLL SUAVE PARA LINKS ÂNCORA
   // ============================================================
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (e) {
@@ -354,11 +553,8 @@
   });
 
   // ============================================================
-  // 7. PROTEÇÃO EXTRA PARA LINKS DE CONVERSÃO
+  // 8. PROTEÇÃO EXTRA PARA LINKS DE CONVERSÃO
   // ============================================================
-  // Os links já estão hardcoded no HTML com o URL correto.
-  // Esta função bloqueia qualquer tentativa de alteração via console
-  // (medida básica de segurança)
   Object.defineProperty(window, "ADV_SCALE_LINK", {
     value: "https://pay.kiwify.com.br/mDGPSbT",
     writable: false,
@@ -366,7 +562,6 @@
     enumerable: true,
   });
 
-  // Verifica se todos os botões CTA apontam para o link correto
   document
     .querySelectorAll(
       ".hero__cta, .cta-final__btn, .floating-cta__link, .header__nav-link--cta",
@@ -375,11 +570,11 @@
       if (btn.tagName === "A") {
         const currentHref = btn.getAttribute("href");
         if (currentHref && !currentHref.includes("pay.kiwify.com.br/mDGPSbT")) {
-          // Se por algum motivo o link foi alterado, corrige
           btn.setAttribute("href", "https://pay.kiwify.com.br/mDGPSbT");
         }
       }
     });
 
   console.log("ADV Scale - Landing Page carregada com sucesso!");
+  console.log("📊 Formulário integrado com Google Sheets");
 })();
