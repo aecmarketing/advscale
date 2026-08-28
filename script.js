@@ -305,7 +305,7 @@
         setTimeout(function () {
           form.querySelector(".form__submit").disabled = false;
           form.querySelector(".form__submit").innerHTML =
-            '<i class="fas fa-paper-plane" aria-hidden="true"></i> Quero me pré-cadastrar';
+            '<i class="fas fa-paper-plane" aria-hidden="true"></i> Garantir Minha Vaga Agora';
           // Resetar campos (opcional)
           // form.reset();
           // Para manter a mensagem de sucesso, não resetamos
@@ -339,7 +339,7 @@
             getComputedStyle(document.documentElement)
               .getPropertyValue("--header-height")
               .replace("px", ""),
-          ) || 90;
+          ) || 84;
         const targetPosition =
           targetEl.getBoundingClientRect().top +
           window.pageYOffset -
