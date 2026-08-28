@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>ADV Scale - Protocolo para Escritórios de Advocacia</title>
+    <meta name="description" content="ADV Scale: Imersão online para advogados que querem estruturar, vender, gerir e escalar seu escritório. 18 e 19 de setembro." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- CABEÇALHO / MENU               -->
+    <!-- ============================== -->
+    <header class="header" role="banner" aria-label="Cabeçalho principal">
+        <div class="container header__container">
+            <a href="#" class="header__logo" aria-label="ADV Scale - Página inicial">
+                <img src="assets/Logo_ADV_2.png" alt="Logo ADV Scale" class="header__logo-img" />
+            </a>
+
+            <button class="header__menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+                <span class="sr-only">Menu</span>
+            </button>
+
+            <nav class="header__nav" id="mainNav" role="navigation" aria-label="Menu principal">
+                <ul class="header__nav-list">
+                    <li><a href="#sobre" class="header__nav-link">Sobre</a></li>
+                    <li><a href="#pilares" class="header__nav-link">Conteúdo</a></li>
+                    <li><a href="#protocolo" class="header__nav-link">Protocolo</a></li>
+                    <li><a href="#publico" class="header__nav-link">Público</a></li>
+                    <li><a href="#inscricao" class="header__nav-link header__nav-link--cta">Quero Participar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============================== -->
+        <!-- HERO                           -->
+        <!-- ============================== -->
+        <section class="hero" id="sobre" aria-labelledby="hero-title">
+            <div class="container hero__container">
+                <span class="hero__badge">Evento 100% online</span>
+                <h1 class="hero__title" id="hero-title">
+                    <span class="hero__title-highlight">PROTOCOLO</span><br />
+                    <strong>ADV SCALE</strong>
+                </h1>
+                <p class="hero__subtitle">
+                    Dois dias para transformar seu escritório em uma operação preparada para crescer.
+                </p>
+                <div class="hero__date">
+                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                    <span>18 e 19 de setembro</span>
+                </div>
+
+                <!-- Contador regressivo -->
+                <div class="hero__countdown" id="countdown" aria-label="Contagem regressiva para o evento">
+                    <div class="countdown__item">
+                        <span class="countdown__number" id="days">00</span>
+                        <span class="countdown__label">Dias</span>
+                    </div>
+                    <div class="countdown__item">
+                        <span class="countdown__number" id="hours">00</span>
+                        <span class="countdown__label">Horas</span>
+                    </div>
+                    <div class="countdown__item">
+                        <span class="countdown__number" id="minutes">00</span>
+                        <span class="countdown__label">Minutos</span>
+                    </div>
+                    <div class="countdown__item">
+                        <span class="countdown__number" id="seconds">00</span>
+                        <span class="countdown__label">Segundos</span>
+                    </div>
+                </div>
+
+                <a href="https://pay.kiwify.com.br/mDGPSbT" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large hero__cta">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    Quero Participar do ADV Scale
+                </a>
+
+                <p class="hero__trust">Garanta sua vaga agora e receba acesso imediato à área de membros</p>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- SOBRE / PROTOCOLO              -->
+        <!-- ============================== -->
+        <section class="section about" id="protocolo" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section__header fade-in">
+                    <h2 class="section__title" id="about-title">Protocolo ADV Scale</h2>
+                    <div class="section__divider"></div>
+                    <p class="section__subtitle">
+                        O Protocolo ADV Scale é uma imersão voltada para advogados e donos de escritórios que querem sair do crescimento baseado no improviso e construir uma operação capaz de atrair clientes, vender, organizar, gerir e escalar.
+                    </p>
+                    <p class="section__text">
+                        Durante dois dias, <strong>Pedro Castro</strong> e <strong>Rafael Sales</strong> vão abrir estratégias, processos e práticas aplicáveis à realidade de um escritório de advocacia.
+                    </p>
+                    <blockquote class="about__quote">
+                        <i class="fas fa-quote-left" aria-hidden="true"></i>
+                        N&atilde;o &eacute; apenas sobre captar mais clientes. &Eacute; sobre construir um escritório preparado para receber esses clientes, convertê-los, atendê-los bem e crescer com processo, gestão e previsibilidade.
+                        <i class="fas fa-quote-right" aria-hidden="true"></i>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- PILARES (O QUE VOCÊ VAI APRENDER) -->
+        <!-- ============================== -->
+        <section class="section pillars" id="pilares" aria-labelledby="pillars-title">
+            <div class="container">
+                <div class="section__header fade-in">
+                    <h2 class="section__title" id="pillars-title">O que voc&ecirc; vai aprender</h2>
+                    <div class="section__divider"></div>
+                </div>
+
+                <div class="pillars__grid">
+
+                    <!-- Pilar 1 -->
+                    <article class="pillar-card fade-in">
+                        <div class="pillar-card__icon">
+                            <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="pillar-card__title">1. Posicionamento e Marketing Jur&iacute;dico</h3>
+                        <p class="pillar-card__text">Como construir presen&ccedil;a e autoridade para que o mercado perceba valor no seu escrit&oacute;rio.</p>
+                        <ul class="pillar-card__list">
+                            <li>Posicionamento estrat&eacute;gico</li>
+                            <li>Constru&ccedil;&atilde;o de autoridade</li>
+                            <li>Conte&uacute;do que gera oportunidades</li>
+                            <li>Marketing jur&iacute;dico aplicado &agrave; realidade do escrit&oacute;rio</li>
+                            <li>Como transformar audi&ecirc;ncia em potenciais clientes</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pilar 2 -->
+                    <article class="pillar-card fade-in">
+                        <div class="pillar-card__icon">
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="pillar-card__title">2. Prospec&ccedil;&atilde;o e Gera&ccedil;&atilde;o de Demanda</h3>
+                        <p class="pillar-card__text">Voc&ecirc; n&atilde;o pode depender apenas de indica&ccedil;&atilde;o ou esperar o cliente chegar.</p>
+                        <ul class="pillar-card__list">
+                            <li>Estrat&eacute;gias para gera&ccedil;&atilde;o constante de oportunidades</li>
+                            <li>Prospec&ccedil;&atilde;o ativa e passiva</li>
+                            <li>Tr&aacute;fego pago e aquisi&ccedil;&atilde;o de leads</li>
+                            <li>Canais de aquisi&ccedil;&atilde;o</li>
+                            <li>Estrat&eacute;gias de indica&ccedil;&atilde;o</li>
+                            <li>Como criar previsibilidade na entrada de novos clientes</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pilar 3 -->
+                    <article class="pillar-card fade-in">
+                        <div class="pillar-card__icon">
+                            <i class="fas fa-handshake" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="pillar-card__title">3. Comercial para Escrit&oacute;rios de Advocacia</h3>
+                        <p class="pillar-card__text">N&atilde;o adianta gerar leads se o escrit&oacute;rio n&atilde;o sabe vender.</p>
+                        <ul class="pillar-card__list">
+                            <li>Como estruturar um setor comercial</li>
+                            <li>Atendimento e qualifica&ccedil;&atilde;o do lead</li>
+                            <li>Scripts de vendas</li>
+                            <li>Follow-up</li>
+                            <li>CRM e organiza&ccedil;&atilde;o do funil</li>
+                            <li>Obje&ccedil;&otilde;es e fechamento</li>
+                            <li>Metas e indicadores comerciais</li>
+                            <li>Como aumentar a convers&atilde;o sem depender exclusivamente do dono</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pilar 4 -->
+                    <article class="pillar-card fade-in">
+                        <div class="pillar-card__icon">
+                            <i class="fas fa-cogs" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="pillar-card__title">4. Gest&atilde;o e Processos</h3>
+                        <p class="pillar-card__text">Quanto mais o escrit&oacute;rio cresce sem organiza&ccedil;&atilde;o, maiores ficam os problemas.</p>
+                        <ul class="pillar-card__list">
+                            <li>Estrutura&ccedil;&atilde;o dos setores</li>
+                            <li>Defini&ccedil;&atilde;o de fun&ccedil;&otilde;es e responsabilidades</li>
+                            <li>Cria&ccedil;&atilde;o de processos e fluxos</li>
+                            <li>Indicadores de desempenho</li>
+                            <li>Gest&atilde;o da opera&ccedil;&atilde;o</li>
+                            <li>Padroniza&ccedil;&atilde;o do atendimento</li>
+                            <li>Tecnologia, automa&ccedil;&atilde;o e intelig&ecirc;ncia artificial aplicadas ao escrit&oacute;rio</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pilar 5 -->
+                    <article class="pillar-card fade-in">
+                        <div class="pillar-card__icon">
+                            <i class="fas fa-users-cog" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="pillar-card__title">5. Pessoas, Lideran&ccedil;a e Cultura</h3>
+                        <p class="pillar-card__text">Um escrit&oacute;rio escal&aacute;vel precisa deixar de depender exclusivamente do seu fundador.</p>
+                        <ul class="pillar-card__list">
+                            <li>Como montar um time</li>
+                            <li>Contrata&ccedil;&atilde;o e desenvolvimento de pessoas</li>
+                            <li>Forma&ccedil;&atilde;o de l&iacute;deres</li>
+                            <li>Delega&ccedil;&atilde;o</li>
+                            <li>Cultura de resultado</li>
+                            <li>Metas e acompanhamento</li>
+                            <li>Como diminuir a depend&ecirc;ncia operacional do dono</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pilar 6 -->
+                    <article class="pillar-card fade-in">
+                        <div class="pillar-card__icon">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="pillar-card__title">6. Financeiro e Crescimento Sustent&aacute;vel</h3>
+                        <p class="pillar-card__text">Faturar mais n&atilde;o significa necessariamente ganhar mais dinheiro.</p>
+                        <ul class="pillar-card__list">
+                            <li>Organiza&ccedil;&atilde;o financeira</li>
+                            <li>Controle dos principais n&uacute;meros</li>
+                            <li>CAC e retorno sobre aquisi&ccedil;&atilde;o</li>
+                            <li>Margem e rentabilidade</li>
+                            <li>Or&ccedil;amento para marketing e expans&atilde;o</li>
+                            <li>Como tomar decis&otilde;es de crescimento baseadas em n&uacute;meros</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pilar 7 -->
+                    <article class="pillar-card pillar-card--full fade-in">
+                        <div class="pillar-card__icon">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="pillar-card__title">7. Escala e Expans&atilde;o</h3>
+                        <p class="pillar-card__text">O que precisa acontecer para um escrit&oacute;rio deixar de ser apenas uma presta&ccedil;&atilde;o de servi&ccedil;o e se transformar em uma verdadeira empresa jur&iacute;dica.</p>
+                        <ul class="pillar-card__list">
+                            <li>Quando &eacute; a hora de escalar</li>
+                            <li>Como identificar gargalos que impedem o crescimento</li>
+                            <li>Novas &aacute;reas e novas frentes de atua&ccedil;&atilde;o</li>
+                            <li>Expans&atilde;o geogr&aacute;fica</li>
+                            <li>Aumento da capacidade operacional</li>
+                            <li>Constru&ccedil;&atilde;o de uma opera&ccedil;&atilde;o que funcione sem centralizar tudo no s&oacute;cio</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- FLUXO DO PROTOCOLO             -->
+        <!-- ============================== -->
+        <section class="section flow" aria-labelledby="flow-title">
+            <div class="container">
+                <div class="section__header fade-in">
+                    <h2 class="section__title" id="flow-title">O Protocolo</h2>
+                    <div class="section__divider"></div>
+                </div>
+
+                <div class="flow__steps fade-in">
+                    <div class="flow__step">
+                        <span class="flow__step-number">1</span>
+                        <span class="flow__step-label">Marketing</span>
+                        <i class="fas fa-arrow-right flow__step-arrow" aria-hidden="true"></i>
+                    </div>
+                    <div class="flow__step">
+                        <span class="flow__step-number">2</span>
+                        <span class="flow__step-label">Demanda</span>
+                        <i class="fas fa-arrow-right flow__step-arrow" aria-hidden="true"></i>
+                    </div>
+                    <div class="flow__step">
+                        <span class="flow__step-number">3</span>
+                        <span class="flow__step-label">Vendas</span>
+                        <i class="fas fa-arrow-right flow__step-arrow" aria-hidden="true"></i>
+                    </div>
+                    <div class="flow__step">
+                        <span class="flow__step-number">4</span>
+                        <span class="flow__step-label">Opera&ccedil;&atilde;o</span>
+                        <i class="fas fa-arrow-right flow__step-arrow" aria-hidden="true"></i>
+                    </div>
+                    <div class="flow__step">
+                        <span class="flow__step-number">5</span>
+                        <span class="flow__step-label">Gest&atilde;o</span>
+                        <i class="fas fa-arrow-right flow__step-arrow" aria-hidden="true"></i>
+                    </div>
+                    <div class="flow__step">
+                        <span class="flow__step-number">6</span>
+                        <span class="flow__step-label">Escala</span>
+                    </div>
+                </div>
+
+                <div class="flow__description fade-in">
+                    <p>
+                        Voc&ecirc; vai entender como essas &aacute;reas se conectam e por que tentar escalar apenas aumentando o investimento em marketing pode criar um escrit&oacute;rio maior, mas tamb&eacute;m muito mais desorganizado.
+                    </p>
+                    <p class="flow__highlight">
+                        O objetivo do Protocolo ADV Scale &eacute; mostrar como construir <strong>crescimento com estrutura</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- PÚBLICO-ALVO                   -->
+        <!-- ============================== -->
+        <section class="section audience" id="publico" aria-labelledby="audience-title">
+            <div class="container">
+                <div class="section__header fade-in">
+                    <h2 class="section__title" id="audience-title">Para quem &eacute; o ADV Scale?</h2>
+                    <div class="section__divider"></div>
+                    <p class="section__subtitle">Para advogados que:</p>
+                </div>
+
+                <ul class="audience__list fade-in">
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Querem aumentar o faturamento do escrit&oacute;rio</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Ainda dependem excessivamente de indica&ccedil;&otilde;es</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Geram leads, mas possuem baixa convers&atilde;o</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Est&atilde;o sobrecarregados com a opera&ccedil;&atilde;o</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Possuem equipe, mas continuam centralizando tudo</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Cresceram e perceberam que a gest&atilde;o n&atilde;o acompanhou</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Querem estruturar marketing e comercial</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Querem transformar o escrit&oacute;rio em uma empresa mais organizada, lucrativa e escal&aacute;vel</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- IMPACT FRASE                   -->
+        <!-- ============================== -->
+        <section class="section impact" aria-labelledby="impact-title">
+            <div class="container">
+                <div class="impact__content fade-in">
+                    <i class="fas fa-quote-left impact__quote-icon" aria-hidden="true"></i>
+                    <h2 id="impact-title" class="impact__title">
+                        N&atilde;o &eacute; apenas sobre ter mais clientes.
+                    </h2>
+                    <p class="impact__text">
+                        &Eacute; sobre construir um escrit&oacute;rio capaz de crescer.
+                    </p>
+                    <div class="impact__list">
+                        <p><span class="impact__highlight">Captar sem vender</span> gera desperd&iacute;cio.</p>
+                        <p><span class="impact__highlight">Vender sem opera&ccedil;&atilde;o</span> gera problema.</p>
+                        <p><span class="impact__highlight">Contratar sem gest&atilde;o</span> gera custo.</p>
+                        <p><span class="impact__highlight">Crescer sem estrutura</span> gera caos.</p>
+                    </div>
+                    <p class="impact__conclusion">
+                        Nos dias <strong>18 e 19 de setembro</strong>, voc&ecirc; vai conhecer o protocolo para conectar todas essas &aacute;reas e construir um escrit&oacute;rio preparado para o pr&oacute;ximo n&iacute;vel.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- FORMULÁRIO DE PRÉ-CADASTRO     -->
+        <!-- ============================== -->
+        <section class="section form-section" id="inscricao" aria-labelledby="form-title">
+            <div class="container">
+                <div class="section__header fade-in">
+                    <h2 class="section__title" id="form-title">Pr&eacute;-cadastro</h2>
+                    <div class="section__divider"></div>
+                    <p class="section__subtitle">Preencha seus dados e garanta sua vaga no ADV Scale</p>
+                </div>
+
+                <form class="form fade-in" id="preRegisterForm" novalidate aria-label="Formulário de pré-cadastro">
+                    <div class="form__group">
+                        <label for="name" class="form__label">Nome completo</label>
+                        <input type="text" id="name" class="form__input" placeholder="Digite seu nome completo" required aria-required="true" />
+                        <span class="form__error" id="nameError" role="alert"></span>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="email" class="form__label">E-mail</label>
+                        <input type="email" id="email" class="form__input" placeholder="Digite seu e-mail" required aria-required="true" />
+                        <span class="form__error" id="emailError" role="alert"></span>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="phone" class="form__label">Telefone</label>
+                        <input type="tel" id="phone" class="form__input" placeholder="(00) 00000-0000" required aria-required="true" />
+                        <span class="form__error" id="phoneError" role="alert"></span>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="city" class="form__label">Cidade / UF</label>
+                        <input type="text" id="city" class="form__input" placeholder="Ex: São Paulo - SP" required aria-required="true" />
+                        <span class="form__error" id="cityError" role="alert"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--large form__submit">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Quero me pré-cadastrar
+                    </button>
+
+                    <div class="form__success" id="formSuccess" role="status" style="display: none;">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <p>Pré-cadastro realizado com sucesso! Em breve você receberá mais informações.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- CTA FINAL                      -->
+        <!-- ============================== -->
+        <section class="section cta-final" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-final__content fade-in">
+                    <h2 class="cta-final__title" id="cta-title">PROTOCOLO ADV SCALE</h2>
+                    <p class="cta-final__subtitle">Marketing. Vendas. Gestão. Estratégia. Escala.</p>
+                    <p class="cta-final__date"><i class="fas fa-calendar-alt" aria-hidden="true"></i> 18 e 19 de setembro | Online</p>
+                    <a href="https://pay.kiwify.com.br/mDGPSbT" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large cta-final__btn">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        Quero Participar do ADV Scale
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================== -->
+    <!-- RODAPÉ                         -->
+    <!-- ============================== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer__container">
+            <img src="assets/Logo_ADV_3.png" alt="ADV Scale" class="footer__logo-img" />
+            <p class="footer__copy">&copy; 2026 ADV Scale. Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- ============================== -->
+    <!-- BOTÃO FLUTUANTE (MOBILE)      -->
+    <!-- ============================== -->
+    <div class="floating-cta" id="floatingCta" aria-label="Botão flutuante de inscrição">
+        <a href="https://pay.kiwify.com.br/mDGPSbT" target="_blank" rel="noopener noreferrer" class="floating-cta__link">
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            <span>Quero Participar</span>
+        </a>
+    </div>
+
+    <!-- ============================== -->
+    <!-- SCRIPTS                       -->
+    <!-- ============================== -->
+    <script src="script.js"></script>
+</body>
+</html>
