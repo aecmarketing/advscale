@@ -13,24 +13,58 @@
       name="description"
       content="ADV Scale: Imersão online para advogados que querem estruturar, vender, gerir e escalar seu escritório. 18 e 19 de setembro."
     />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&family=Montserrat:wght@300;400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <!-- Estilos customizados -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Configuração Tailwind -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#061e4e",
+              secondary: "#daad57",
+              "secondary-light": "#e8c87a",
+              "secondary-dark": "#c49a3f",
+            },
+            fontFamily: {
+              brand: ["Montserrat", "Inter", "sans-serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
   </head>
   <body>
     <!-- ============================== -->
     <!-- CABEÇALHO / MENU               -->
     <!-- ============================== -->
-    <header class="header" role="banner" aria-label="Cabeçalho principal">
-      <div class="container header__container">
+    <header
+      class="fixed top-0 left-0 right-0 z-[1000] bg-white shadow-sm h-[84px] flex items-center"
+      role="banner"
+    >
+      <div
+        class="container mx-auto px-4 md:px-6 flex items-center justify-between"
+      >
         <a
           href="#"
           class="header__logo"
@@ -39,12 +73,12 @@
           <img
             src="assets/Logo_ADV_2.png"
             alt="Logo ADV Scale"
-            class="header__logo-img"
+            class="h-14 md:h-[72px] lg:h-[90px] w-auto max-w-[220px] object-contain"
           />
         </a>
 
         <button
-          class="header__menu-toggle"
+          class="header__menu-toggle lg:hidden bg-none border-none text-2xl text-primary cursor-pointer p-2 rounded-lg hover:bg-primary/5 transition-colors"
           id="menuToggle"
           aria-label="Abrir menu de navegação"
           aria-expanded="false"
@@ -54,23 +88,104 @@
         </button>
 
         <nav
-          class="header__nav"
+          class="header__nav hidden lg:block"
           id="mainNav"
           role="navigation"
           aria-label="Menu principal"
         >
-          <ul class="header__nav-list">
-            <li><a href="#sobre" class="header__nav-link">Sobre</a></li>
-            <li><a href="#pilares" class="header__nav-link">Conteúdo</a></li>
-            <li><a href="#protocolo" class="header__nav-link">Protocolo</a></li>
-            <li><a href="#publico" class="header__nav-link">Público</a></li>
+          <ul class="flex items-center gap-1">
             <li>
-              <a href="#instrutores" class="header__nav-link">Mentores</a>
+              <a
+                href="#sobre"
+                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
+                >Sobre</a
+              >
+            </li>
+            <li>
+              <a
+                href="#pilares"
+                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
+                >Conteúdo</a
+              >
+            </li>
+            <li>
+              <a
+                href="#protocolo"
+                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
+                >Protocolo</a
+              >
+            </li>
+            <li>
+              <a
+                href="#publico"
+                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
+                >Público</a
+              >
+            </li>
+            <li>
+              <a
+                href="#instrutores"
+                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
+                >Mentores</a
+              >
             </li>
             <li>
               <a
                 href="#inscricao"
-                class="header__nav-link header__nav-link--cta"
+                class="block px-6 py-2 font-semibold font-brand text-primary bg-secondary rounded-full hover:bg-secondary-light transition-colors text-sm"
+                >Garantir Minha Vaga</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Menu Mobile -->
+        <nav
+          class="header__nav-mobile hidden absolute top-[84px] left-0 right-0 bg-white shadow-lg border-t-2 border-secondary p-4 lg:hidden"
+          id="mainNavMobile"
+          role="navigation"
+          aria-label="Menu mobile"
+        >
+          <ul class="flex flex-col gap-2">
+            <li>
+              <a
+                href="#sobre"
+                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
+                >Sobre</a
+              >
+            </li>
+            <li>
+              <a
+                href="#pilares"
+                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
+                >Conteúdo</a
+              >
+            </li>
+            <li>
+              <a
+                href="#protocolo"
+                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
+                >Protocolo</a
+              >
+            </li>
+            <li>
+              <a
+                href="#publico"
+                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
+                >Público</a
+              >
+            </li>
+            <li>
+              <a
+                href="#instrutores"
+                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
+                >Mentores</a
+              >
+            </li>
+            <li>
+              <a
+                href="#inscricao"
+                class="block px-4 py-3 font-semibold font-brand text-center text-primary bg-secondary rounded-lg hover:bg-secondary-light transition-colors"
                 >Garantir Minha Vaga</a
               >
             </li>
@@ -79,47 +194,103 @@
       </div>
     </header>
 
-    <main>
+    <main class="pt-[84px]">
       <!-- ============================== -->
-      <!-- HERO - COPY DE ALTA CONVERSÃO  -->
+      <!-- HERO                           -->
       <!-- ============================== -->
-      <section class="hero" id="sobre" aria-labelledby="hero-title">
-        <div class="container hero__container">
-          <span class="hero__badge">🔥 Últimas vagas | Evento 100% online</span>
-          <h1 class="hero__title" id="hero-title">
-            <span class="hero__title-highlight">PROTOCOLO</span><br />
+      <section
+        class="hero py-10 md:py-16 lg:py-20 text-center text-white relative overflow-hidden"
+        id="sobre"
+        style="background: linear-gradient(160deg, #061e4e 0%, #0a2a6a 100%)"
+      >
+        <div
+          class="absolute bottom-[-40%] right-[-20%] w-[80%] h-[80%] bg-[radial-gradient(circle,rgba(218,173,87,0.08)_0%,transparent_70%)] pointer-events-none"
+        ></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <span
+            class="inline-block bg-secondary/20 text-secondary px-5 py-1.5 rounded-full text-sm font-semibold font-brand border border-secondary/20 mb-5"
+            >🔥 Últimas vagas | Evento 100% online</span
+          >
+          <h1
+            class="text-4xl md:text-5xl lg:text-7xl font-extrabold font-brand leading-[1.1] tracking-[-0.02em]"
+            id="hero-title"
+          >
+            <span
+              class="block font-normal text-lg md:text-2xl lg:text-3xl text-secondary tracking-[0.05em] mb-1"
+              >PROTOCOLO</span
+            >
             <strong>ADV SCALE</strong>
           </h1>
-          <p class="hero__subtitle">
+          <p
+            class="text-lg md:text-xl lg:text-2xl text-white/90 max-w-[600px] mx-auto mt-4 leading-relaxed"
+          >
             Em 2 dias, transforme seu escritório em uma operação que atrai,
-            converte e escala — <strong>sem depender de indicações</strong>.
+            converte e escala —
+            <strong class="text-secondary">sem depender de indicações</strong>.
           </p>
-          <div class="hero__date">
+          <div
+            class="inline-flex items-center gap-3 text-secondary font-semibold font-brand bg-secondary/10 px-5 py-2 rounded-full mt-5 mb-7"
+          >
             <i class="fas fa-calendar-alt" aria-hidden="true"></i>
             <span>18 e 19 de setembro | 100% online e ao vivo</span>
           </div>
 
-          <!-- Contador regressivo -->
+          <!-- Contador -->
           <div
-            class="hero__countdown"
+            class="flex justify-center gap-4 md:gap-6 mt-6 mb-8"
             id="countdown"
-            aria-label="Contagem regressiva para o evento"
           >
-            <div class="countdown__item">
-              <span class="countdown__number" id="days">00</span>
-              <span class="countdown__label">Dias</span>
+            <div
+              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
+            >
+              <span
+                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
+                id="days"
+                >00</span
+              >
+              <span
+                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
+                >Dias</span
+              >
             </div>
-            <div class="countdown__item">
-              <span class="countdown__number" id="hours">00</span>
-              <span class="countdown__label">Horas</span>
+            <div
+              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
+            >
+              <span
+                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
+                id="hours"
+                >00</span
+              >
+              <span
+                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
+                >Horas</span
+              >
             </div>
-            <div class="countdown__item">
-              <span class="countdown__number" id="minutes">00</span>
-              <span class="countdown__label">Minutos</span>
+            <div
+              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
+            >
+              <span
+                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
+                id="minutes"
+                >00</span
+              >
+              <span
+                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
+                >Minutos</span
+              >
             </div>
-            <div class="countdown__item">
-              <span class="countdown__number" id="seconds">00</span>
-              <span class="countdown__label">Segundos</span>
+            <div
+              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
+            >
+              <span
+                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
+                id="seconds"
+                >00</span
+              >
+              <span
+                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
+                >Segundos</span
+              >
             </div>
           </div>
 
@@ -127,61 +298,65 @@
             href="https://pay.kiwify.com.br/mDGPSbT"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn btn--primary btn--large hero__cta"
+            class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)] hover:shadow-[0_8px_24px_rgba(218,173,87,0.45)]"
           >
             <i class="fas fa-rocket" aria-hidden="true"></i>
             Quero Estruturar Meu Escritório Agora
           </a>
-
-          <p class="hero__trust">
+          <p class="text-white/60 text-sm md:text-base font-medium mt-4">
             ✅ Garantia de 7 dias ou seu dinheiro de volta
           </p>
         </div>
       </section>
 
       <!-- ============================== -->
-      <!-- SOBRE / PROTOCOLO - COPY DE IMPACTO -->
+      <!-- SOBRE / PROTOCOLO              -->
       <!-- ============================== -->
-      <section
-        class="section about"
-        id="protocolo"
-        aria-labelledby="about-title"
-      >
-        <div class="container">
-          <div class="section__header fade-in">
-            <h2 class="section__title" id="about-title">
+      <section class="section py-12 md:py-20 bg-[#f8f6f0]" id="protocolo">
+        <div class="container mx-auto px-4">
+          <div class="text-center max-w-3xl mx-auto fade-in">
+            <h2
+              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
+            >
               Chega de improviso. Seu escritório merece
-              <span style="color: var(--color-secondary)"
-                >crescimento com estrutura</span
-              >.
+              <span class="text-secondary">crescimento com estrutura</span>.
             </h2>
-            <div class="section__divider"></div>
-            <p class="section__subtitle">
+            <div
+              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
+            ></div>
+            <p class="text-lg text-gray-600 leading-relaxed">
               O Protocolo ADV Scale é uma imersão prática criada para advogados
               e donos de escritórios que estão cansados de apagar incêndios e
               querem construir uma operação que funciona
-              <strong>com ou sem você</strong>.
+              <strong class="text-primary">com ou sem você</strong>.
             </p>
-            <p class="section__text">
-              Durante <strong>2 dias intensos</strong>,
-              <strong>Pedro Castro</strong> e <strong>Rafael Sales</strong> vão
-              abrir o passo a passo que já transformou dezenas de escritórios —
-              mostrando como atrair clientes, vender com consistência, organizar
-              processos e escalar sem caos.
+            <p class="text-lg text-gray-600 leading-relaxed mt-4">
+              Durante <strong class="text-primary">2 dias intensos</strong>,
+              <strong class="text-primary">Pedro Castro</strong> e
+              <strong class="text-primary">Rafael Sales</strong> vão abrir o
+              passo a passo que já transformou dezenas de escritórios.
             </p>
-            <blockquote class="about__quote">
-              <i class="fas fa-quote-left" aria-hidden="true"></i>
+            <blockquote
+              class="text-primary bg-white p-6 md:p-8 rounded-xl shadow-md max-w-2xl mx-auto mt-6 border-l-4 border-secondary italic text-lg leading-relaxed font-brand"
+            >
+              <i
+                class="fas fa-quote-left text-secondary/50 text-sm mr-2"
+                aria-hidden="true"
+              ></i>
               "O erro mais comum é investir em marketing antes de ter estrutura.
               Você atrai clientes, mas não consegue atender. O resultado?
               Desperdício de dinheiro e frustração."
-              <i class="fas fa-quote-right" aria-hidden="true"></i>
+              <i
+                class="fas fa-quote-right text-secondary/50 text-sm ml-2"
+                aria-hidden="true"
+              ></i>
             </blockquote>
-            <div style="text-align: center; margin-top: 32px">
+            <div class="mt-8">
               <a
                 href="https://pay.kiwify.com.br/mDGPSbT"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn btn--primary"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-primary font-bold font-brand rounded-xl hover:bg-secondary-light transition-all"
               >
                 <i class="fas fa-check-circle" aria-hidden="true"></i>
                 Sim, quero construir um escritório preparado para crescer
@@ -192,202 +367,340 @@
       </section>
 
       <!-- ============================== -->
-      <!-- PILARES - CARROSSEL AUTOMÁTICO -->
+      <!-- PILARES - CARROSSEL            -->
       <!-- ============================== -->
       <section
-        class="section pillars"
+        class="section py-12 md:py-20 bg-white overflow-hidden"
         id="pilares"
-        aria-labelledby="pillars-title"
       >
-        <div class="container">
-          <div class="section__header fade-in">
-            <h2 class="section__title" id="pillars-title">
+        <div class="container mx-auto px-4">
+          <div class="text-center max-w-3xl mx-auto fade-in">
+            <h2
+              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
+            >
               O que você vai aprender
-              <span style="color: var(--color-secondary)"
+              <span class="text-secondary"
                 >para transformar seu escritório</span
               >
             </h2>
-            <div class="section__divider"></div>
-            <p class="section__subtitle">
-              7 pilares que vão mudar a forma como você enxerga seu negócio — e
-              como ele cresce
+            <div
+              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
+            ></div>
+            <p class="text-lg text-gray-600">
+              7 pilares que vão mudar a forma como você enxerga seu negócio
             </p>
           </div>
 
-          <!-- CARROSSEL -->
           <div
-            class="carousel"
+            class="carousel relative max-w-[900px] mx-auto px-2"
             id="carousel"
-            role="region"
-            aria-label="Carrossel dos 7 pilares do ADV Scale"
           >
-            <div class="carousel__track-wrapper">
-              <div class="carousel__track" id="carouselTrack">
-                <!-- Pilar 1 -->
-                <article class="pillar-card carousel__slide" data-index="0">
-                  <div class="pillar-card__icon">
+            <div class="overflow-hidden rounded-xl" id="carouselTrackWrapper">
+              <div
+                class="flex transition-transform duration-[600ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+                id="carouselTrack"
+              >
+                <!-- Slides gerados via JavaScript -->
+                <div
+                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
+                  >
                     <i class="fas fa-bullhorn" aria-hidden="true"></i>
                   </div>
-                  <h3 class="pillar-card__title">
+                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
                     1. Posicionamento e Marketing Jurídico
                   </h3>
-                  <p class="pillar-card__text">
+                  <p class="text-gray-500 text-sm mb-3">
                     Pare de ser invisível. Aprenda a construir autoridade e
-                    fazer o mercado <strong>enxergar valor</strong> no seu
+                    fazer o mercado
+                    <strong class="text-primary">enxergar valor</strong> no seu
                     trabalho.
                   </p>
-                  <ul class="pillar-card__list">
-                    <li>Posicionamento que atrai os clientes certos</li>
-                    <li>Conteúdo que gera oportunidades reais</li>
-                    <li>Marketing jurídico que funciona na prática</li>
-                    <li>Como transformar audiência em clientes</li>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Posicionamento que atrai os clientes certos
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Conteúdo que gera oportunidades reais
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Marketing jurídico que funciona na prática
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Como transformar audiência em clientes
+                    </li>
                   </ul>
-                </article>
+                </div>
 
-                <!-- Pilar 2 -->
-                <article class="pillar-card carousel__slide" data-index="1">
-                  <div class="pillar-card__icon">
+                <div
+                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
+                  >
                     <i class="fas fa-users" aria-hidden="true"></i>
                   </div>
-                  <h3 class="pillar-card__title">
+                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
                     2. Prospecção e Geração de Demanda
                   </h3>
-                  <p class="pillar-card__text">
-                    Indicação é bom, mas não dá para escalar. Descubra como
-                    criar um fluxo <strong>constante e previsível</strong> de
-                    oportunidades.
+                  <p class="text-gray-500 text-sm mb-3">
+                    Indicação é bom, mas não dá para escalar. Crie um fluxo
+                    <strong class="text-primary">constante e previsível</strong>
+                    de oportunidades.
                   </p>
-                  <ul class="pillar-card__list">
-                    <li>Estratégias de prospecção ativa e passiva</li>
-                    <li>Tráfego pago e aquisição de leads</li>
-                    <li>Canais de aquisição que realmente funcionam</li>
-                    <li>Como prever a entrada de novos clientes</li>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Estratégias de prospecção ativa e passiva
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Tráfego pago e aquisição de leads
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Canais de aquisição que realmente funcionam
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Como prever a entrada de novos clientes
+                    </li>
                   </ul>
-                </article>
+                </div>
 
-                <!-- Pilar 3 -->
-                <article class="pillar-card carousel__slide" data-index="2">
-                  <div class="pillar-card__icon">
+                <div
+                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
+                  >
                     <i class="fas fa-handshake" aria-hidden="true"></i>
                   </div>
-                  <h3 class="pillar-card__title">
+                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
                     3. Comercial para Escritórios
                   </h3>
-                  <p class="pillar-card__text">
+                  <p class="text-gray-500 text-sm mb-3">
                     Seu escritório
-                    <strong>não pode depender de você</strong> para vender.
-                    Estruture um time comercial que converte.
+                    <strong class="text-primary"
+                      >não pode depender de você</strong
+                    >
+                    para vender. Estruture um time comercial que converte.
                   </p>
-                  <ul class="pillar-card__list">
-                    <li>Estruturação do setor comercial</li>
-                    <li>Scripts de vendas testados e aprovados</li>
-                    <li>CRM e organização do funil</li>
-                    <li>Como fechar mais com menos esforço</li>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Estruturação do setor comercial
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Scripts de vendas testados e aprovados
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      CRM e organização do funil
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Como fechar mais com menos esforço
+                    </li>
                   </ul>
-                </article>
+                </div>
 
-                <!-- Pilar 4 -->
-                <article class="pillar-card carousel__slide" data-index="3">
-                  <div class="pillar-card__icon">
+                <div
+                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
+                  >
                     <i class="fas fa-cogs" aria-hidden="true"></i>
                   </div>
-                  <h3 class="pillar-card__title">4. Gestão e Processos</h3>
-                  <p class="pillar-card__text">
-                    Crescer sem organização é o <strong>maior erro</strong> que
-                    um escritório pode cometer. Aprenda a estruturar antes de
-                    escalar.
+                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
+                    4. Gestão e Processos
+                  </h3>
+                  <p class="text-gray-500 text-sm mb-3">
+                    Crescer sem organização é o
+                    <strong class="text-primary">maior erro</strong> que um
+                    escritório pode cometer.
                   </p>
-                  <ul class="pillar-card__list">
-                    <li>Estruturação de setores e funções</li>
-                    <li>Processos e fluxos que funcionam</li>
-                    <li>Indicadores de desempenho</li>
-                    <li>Tecnologia e automação aplicadas</li>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Estruturação de setores e funções
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Processos e fluxos que funcionam
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Indicadores de desempenho
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Tecnologia e automação aplicadas
+                    </li>
                   </ul>
-                </article>
+                </div>
 
-                <!-- Pilar 5 -->
-                <article class="pillar-card carousel__slide" data-index="4">
-                  <div class="pillar-card__icon">
+                <div
+                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
+                  >
                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                   </div>
-                  <h3 class="pillar-card__title">
+                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
                     5. Pessoas, Liderança e Cultura
                   </h3>
-                  <p class="pillar-card__text">
+                  <p class="text-gray-500 text-sm mb-3">
                     O maior gargalo de crescimento é a
-                    <strong>dependência do dono</strong>. Aprenda a delegar e
-                    formar líderes.
+                    <strong class="text-primary">dependência do dono</strong>.
+                    Aprenda a delegar e formar líderes.
                   </p>
-                  <ul class="pillar-card__list">
-                    <li>Como montar e desenvolver um time</li>
-                    <li>Formação de líderes e delegação</li>
-                    <li>Cultura de resultado e metas</li>
-                    <li>Como sair da operação sem perder o controle</li>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Como montar e desenvolver um time
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Formação de líderes e delegação
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Cultura de resultado e metas
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Como sair da operação sem perder o controle
+                    </li>
                   </ul>
-                </article>
+                </div>
 
-                <!-- Pilar 6 -->
-                <article class="pillar-card carousel__slide" data-index="5">
-                  <div class="pillar-card__icon">
+                <div
+                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
+                  >
                     <i class="fas fa-chart-line" aria-hidden="true"></i>
                   </div>
-                  <h3 class="pillar-card__title">
+                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
                     6. Financeiro e Crescimento Sustentável
                   </h3>
-                  <p class="pillar-card__text">
-                    Faturar mais não é sinônimo de lucrar mais. Aprenda a tomar
-                    decisões <strong>baseadas em números</strong>.
+                  <p class="text-gray-500 text-sm mb-3">
+                    Faturar mais não é sinônimo de lucrar mais. Decisões
+                    <strong class="text-primary">baseadas em números</strong>.
                   </p>
-                  <ul class="pillar-card__list">
-                    <li>Organização financeira do escritório</li>
-                    <li>CAC e retorno sobre aquisição</li>
-                    <li>Margem e rentabilidade</li>
-                    <li>Orçamento para marketing e expansão</li>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Organização financeira do escritório
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      CAC e retorno sobre aquisição
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Margem e rentabilidade
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Orçamento para marketing e expansão
+                    </li>
                   </ul>
-                </article>
+                </div>
 
-                <!-- Pilar 7 -->
-                <article class="pillar-card carousel__slide" data-index="6">
-                  <div class="pillar-card__icon">
+                <div
+                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
+                  >
                     <i class="fas fa-rocket" aria-hidden="true"></i>
                   </div>
-                  <h3 class="pillar-card__title">7. Escala e Expansão</h3>
-                  <p class="pillar-card__text">
+                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
+                    7. Escala e Expansão
+                  </h3>
+                  <p class="text-gray-500 text-sm mb-3">
                     O que separa um escritório comum de uma
-                    <strong>verdadeira empresa jurídica</strong>? Aprenda a
-                    escalar com inteligência.
+                    <strong class="text-primary"
+                      >verdadeira empresa jurídica</strong
+                    >?
                   </p>
-                  <ul class="pillar-card__list">
-                    <li>Quando e como escalar</li>
-                    <li>Como identificar gargalos de crescimento</li>
-                    <li>Novas áreas e frentes de atuação</li>
-                    <li>Expansão geográfica e operacional</li>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Quando e como escalar
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Como identificar gargalos de crescimento
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Novas áreas e frentes de atuação
+                    </li>
+                    <li
+                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
+                    >
+                      Expansão geográfica e operacional
+                    </li>
                   </ul>
-                </article>
+                </div>
               </div>
             </div>
 
-            <!-- Controles do Carrossel -->
-            <div class="carousel__controls">
+            <!-- Controles -->
+            <div class="flex items-center justify-center gap-4 mt-6">
               <button
-                class="carousel__btn carousel__btn--prev"
+                class="carousel__btn w-11 h-11 rounded-full border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
                 id="carouselPrev"
                 aria-label="Slide anterior"
               >
                 <i class="fas fa-chevron-left" aria-hidden="true"></i>
               </button>
-
               <div
-                class="carousel__dots"
+                class="carousel__dots flex gap-2 items-center"
                 id="carouselDots"
-                role="tablist"
-                aria-label="Navegação dos slides"
-              >
-                <!-- Dots gerados via JavaScript -->
-              </div>
-
+              ></div>
               <button
-                class="carousel__btn carousel__btn--next"
+                class="carousel__btn w-11 h-11 rounded-full border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
                 id="carouselNext"
                 aria-label="Próximo slide"
               >
@@ -395,18 +708,22 @@
               </button>
             </div>
 
-            <!-- Indicador de progresso -->
-            <div class="carousel__progress" aria-hidden="true">
-              <div class="carousel__progress-bar" id="carouselProgress"></div>
+            <div
+              class="w-full max-w-[400px] h-1 bg-gray-200 rounded-full mx-auto mt-4 overflow-hidden"
+            >
+              <div
+                class="carousel__progress-bar h-full bg-secondary rounded-full w-0 transition-[width] duration-300"
+                id="carouselProgress"
+              ></div>
             </div>
           </div>
 
-          <div style="text-align: center; margin-top: 40px">
+          <div class="text-center mt-10">
             <a
               href="https://pay.kiwify.com.br/mDGPSbT"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn--primary btn--large"
+              class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
             >
               <i class="fas fa-graduation-cap" aria-hidden="true"></i>
               Quero Aprender Tudo Isso e Transformar Meu Escritório
@@ -418,88 +735,129 @@
       <!-- ============================== -->
       <!-- FLUXO DO PROTOCOLO             -->
       <!-- ============================== -->
-      <section class="section flow" aria-labelledby="flow-title">
-        <div class="container">
-          <div class="section__header fade-in">
-            <h2 class="section__title" id="flow-title">
-              O Protocolo
-              <span style="color: var(--color-secondary)">passo a passo</span>
+      <section class="section py-12 md:py-20 bg-[#f8f6f0]">
+        <div class="container mx-auto px-4">
+          <div class="text-center max-w-3xl mx-auto fade-in">
+            <h2
+              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
+            >
+              O Protocolo <span class="text-secondary">passo a passo</span>
             </h2>
-            <div class="section__divider"></div>
-            <p class="section__subtitle">
+            <div
+              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
+            ></div>
+            <p class="text-lg text-gray-600">
               Da atração de clientes à escala — tudo conectado em um sistema que
               funciona
             </p>
           </div>
 
-          <div class="flow__steps fade-in">
-            <div class="flow__step">
-              <span class="flow__step-number">1</span>
-              <span class="flow__step-label">Marketing</span>
+          <div
+            class="flex flex-wrap justify-center items-center gap-2 md:gap-5 max-w-[800px] mx-auto py-5"
+          >
+            <div
+              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
+                >1</span
+              >
+              Marketing
               <i
-                class="fas fa-arrow-right flow__step-arrow"
+                class="fas fa-arrow-right text-secondary text-xs ml-1"
                 aria-hidden="true"
               ></i>
             </div>
-            <div class="flow__step">
-              <span class="flow__step-number">2</span>
-              <span class="flow__step-label">Demanda</span>
+            <div
+              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
+                >2</span
+              >
+              Demanda
               <i
-                class="fas fa-arrow-right flow__step-arrow"
+                class="fas fa-arrow-right text-secondary text-xs ml-1"
                 aria-hidden="true"
               ></i>
             </div>
-            <div class="flow__step">
-              <span class="flow__step-number">3</span>
-              <span class="flow__step-label">Vendas</span>
+            <div
+              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
+                >3</span
+              >
+              Vendas
               <i
-                class="fas fa-arrow-right flow__step-arrow"
+                class="fas fa-arrow-right text-secondary text-xs ml-1"
                 aria-hidden="true"
               ></i>
             </div>
-            <div class="flow__step">
-              <span class="flow__step-number">4</span>
-              <span class="flow__step-label">Operação</span>
+            <div
+              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
+                >4</span
+              >
+              Operação
               <i
-                class="fas fa-arrow-right flow__step-arrow"
+                class="fas fa-arrow-right text-secondary text-xs ml-1"
                 aria-hidden="true"
               ></i>
             </div>
-            <div class="flow__step">
-              <span class="flow__step-number">5</span>
-              <span class="flow__step-label">Gestão</span>
+            <div
+              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
+                >5</span
+              >
+              Gestão
               <i
-                class="fas fa-arrow-right flow__step-arrow"
+                class="fas fa-arrow-right text-secondary text-xs ml-1"
                 aria-hidden="true"
               ></i>
             </div>
-            <div class="flow__step">
-              <span class="flow__step-number">6</span>
-              <span class="flow__step-label">Escala</span>
+            <div
+              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
+                >6</span
+              >
+              Escala
             </div>
           </div>
 
-          <div class="flow__description fade-in">
+          <div
+            class="max-w-[680px] mx-auto text-center text-gray-600 text-lg leading-relaxed mt-6"
+          >
             <p>
-              <strong>Marketing sem estrutura é desperdício.</strong> Vendas sem
-              operação é problema. Crescimento sem gestão é caos.
+              <strong class="text-primary"
+                >Marketing sem estrutura é desperdício.</strong
+              >
+              Vendas sem operação é problema. Crescimento sem gestão é caos.
             </p>
-            <p>
+            <p class="mt-4">
               O Protocolo ADV Scale conecta todas essas áreas para você
               construir um escritório que cresce
-              <strong>com previsibilidade e lucratividade</strong>.
+              <strong class="text-primary"
+                >com previsibilidade e lucratividade</strong
+              >.
             </p>
-            <p class="flow__highlight">
+            <p class="text-primary text-xl font-bold font-brand mt-4">
               🎯 O objetivo é claro: <strong>crescimento com estrutura</strong>.
             </p>
           </div>
 
-          <div style="text-align: center; margin-top: 40px">
+          <div class="text-center mt-10">
             <a
               href="https://pay.kiwify.com.br/mDGPSbT"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn--primary btn--large"
+              class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
             >
               <i class="fas fa-arrow-right" aria-hidden="true"></i>
               Quero Aplicar Esse Protocolo no Meu Escritório
@@ -509,90 +867,159 @@
       </section>
 
       <!-- ============================== -->
-      <!-- PÚBLICO-ALVO - CORRIGIDO       -->
+      <!-- PÚBLICO-ALVO                   -->
       <!-- ============================== -->
-      <section
-        class="section audience"
-        id="publico"
-        aria-labelledby="audience-title"
-      >
-        <div class="container">
-          <div class="section__header fade-in">
-            <h2 class="section__title" id="audience-title">
-              Este evento é
-              <span style="color: var(--color-secondary)">para você</span> se...
+      <section class="section py-12 md:py-20 bg-white" id="publico">
+        <div class="container mx-auto px-4">
+          <div class="text-center max-w-3xl mx-auto fade-in">
+            <h2
+              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
+            >
+              Este evento é <span class="text-secondary">para você</span> se...
             </h2>
-            <div class="section__divider"></div>
-            <p class="section__subtitle">
+            <div
+              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
+            ></div>
+            <p class="text-lg text-gray-600">
               Você se identifica com alguma dessas situações? Então o ADV Scale
               foi feito sob medida para você.
             </p>
           </div>
 
-          <ul class="audience__list fade-in">
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
-                <strong>Quer aumentar o faturamento</strong> do seu escritório,
-                mas não sabe por onde começar
+          <ul
+            class="max-w-[720px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 fade-in"
+          >
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
+                <strong class="text-primary"
+                  >Quer aumentar o faturamento</strong
+                >
+                do seu escritório, mas não sabe por onde começar
               </div>
             </li>
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
-                Ainda <strong>depende de indicações</strong> e quer um fluxo
-                previsível de clientes
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
+                Ainda
+                <strong class="text-primary">depende de indicações</strong> e
+                quer um fluxo previsível de clientes
               </div>
             </li>
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
-                Gera leads, mas tem <strong>baixa conversão</strong> e não sabe
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
+                Gera leads, mas tem
+                <strong class="text-primary">baixa conversão</strong> e não sabe
                 o que fazer
               </div>
             </li>
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
-                Está <strong>sobrecarregado</strong> com a operação e não tem
-                tempo para o que importa
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
+                Está <strong class="text-primary">sobrecarregado</strong> com a
+                operação e não tem tempo para o que importa
               </div>
             </li>
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
-                Tem equipe, mas <strong>centraliza tudo</strong> e não consegue
-                delegar
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
+                Tem equipe, mas
+                <strong class="text-primary">centraliza tudo</strong> e não
+                consegue delegar
               </div>
             </li>
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
-                Cresceu, mas a <strong>gestão não acompanhou</strong> o ritmo
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
+                Cresceu, mas a
+                <strong class="text-primary">gestão não acompanhou</strong> o
+                ritmo
               </div>
             </li>
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
-                Quer <strong>estruturar marketing e comercial</strong> para
-                escalar de verdade
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
+                Quer
+                <strong class="text-primary"
+                  >estruturar marketing e comercial</strong
+                >
+                para escalar de verdade
               </div>
             </li>
-            <li>
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <div>
+            <li
+              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
+            >
+              <i
+                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              ></i>
+              <div
+                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
+              >
                 Quer transformar seu escritório em uma
-                <strong>empresa organizada, lucrativa e escalável</strong>
+                <strong class="text-primary"
+                  >empresa organizada, lucrativa e escalável</strong
+                >
               </div>
             </li>
           </ul>
 
-          <div style="text-align: center; margin-top: 40px">
+          <div class="text-center mt-10">
             <a
               href="https://pay.kiwify.com.br/mDGPSbT"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn--primary btn--large"
+              class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
             >
               <i class="fas fa-user-check" aria-hidden="true"></i>
               Sim, Me Reconheci. Quero Participar!
@@ -601,154 +1028,146 @@
         </div>
       </section>
 
-      <!-- ============================== -->
-      <!-- QUEM VAI TE ENSINAR            -->
-      <!-- ============================== -->
-      <section
-        class="section instructors"
-        id="instrutores"
-        aria-labelledby="instructors-title"
-      >
-        <div class="container">
-          <div class="section__header fade-in">
-            <h2 class="section__title" id="instructors-title">
-              Quem vai te
-              <span style="color: var(--color-secondary)">ensinar</span>
-            </h2>
-            <div class="section__divider"></div>
-            <p class="section__subtitle">
-              Conheça os especialistas que vão guiar você nessa jornada de
-              transformação
-            </p>
-          </div>
+              <!-- ============================== -->
+        <!-- QUEM VAI TE ENSINAR            -->
+        <!-- ============================== -->
+        <section class="section py-12 md:py-20 bg-[#f8f6f0]" id="instrutores">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto fade-in">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]">
+                        Quem vai te <span class="text-secondary">ensinar</span>
+                    </h2>
+                    <div class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"></div>
+                    <p class="text-lg text-gray-600">Conheça os especialistas que vão guiar você nessa jornada de transformação</p>
+                </div>
 
-          <div class="instructors__grid fade-in">
-            <!-- Mentor 1 - Pedro Castro -->
-            <div class="instructor-card">
-              <div class="instructor-card__image">
-                <!-- Substitua o src pelo caminho da foto do Pedro Castro -->
-                <img
-                  src="https://ui-avatars.com/api/?name=Pedro+Castro&background=061e4e&color=daad57&size=160&font-size=0.5"
-                  alt="Pedro Castro"
-                />
-              </div>
-              <h3>Pedro Castro</h3>
-              <p class="instructor-card__role">
-                Especialista em Gestão de Escritórios
-              </p>
-              <p class="instructor-card__bio">
-                Pedro é especialista em gestão de escritórios de advocacia com
-                mais de 10 anos de experiência. Já ajudou mais de 50 escritórios
-                a estruturar suas operações, aumentando o faturamento em até
-                300% e reduzindo a dependência do sócio fundador.
-              </p>
-              <div class="instructor-card__social">
-                <a href="#" aria-label="LinkedIn de Pedro Castro"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-                <a href="#" aria-label="Instagram de Pedro Castro"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </div>
+                <!-- ESPAÇO EXTRA PARA DESCER AS FOTOS -->
+                <div class="h-8 md:h-12"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[900px] mx-auto fade-in">
+                    <!-- Mentor 1 - Pedro Castro -->
+                    <div class="text-center p-8 bg-white rounded-xl border border-gray-200 hover:-translate-y-1 hover:shadow-xl transition-all">
+                        <div class="flex justify-center mb-4">
+                            <img src="assets/pedro.jpg" alt="Pedro Castro" class="w-[140px] h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-full object-cover border-4 border-secondary" />
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-primary font-brand">Pedro Castro</h3>
+                        <p class="text-secondary-dark font-semibold text-sm md:text-base font-brand mb-3">Especialista em Gestão de Escritórios</p>
+                        <p class="text-gray-600 text-sm md:text-base max-w-[450px] mx-auto leading-relaxed">
+                            Pedro é especialista em gestão de escritórios de advocacia com mais de 10 anos de experiência. Já ajudou mais de 50 escritórios a estruturar suas operações, aumentando o faturamento em até 300% e reduzindo a dependência do sócio fundador.
+                        </p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" aria-label="LinkedIn de Pedro Castro" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" aria-label="Instagram de Pedro Castro" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mentor 2 - Rafael Sales -->
+                    <div class="text-center p-8 bg-white rounded-xl border border-gray-200 hover:-translate-y-1 hover:shadow-xl transition-all">
+                        <div class="flex justify-center mb-4">
+                            <img src="assets/rafael.jpeg" alt="Rafael Sales" class="w-[140px] h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-full object-cover border-4 border-secondary" />
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-primary font-brand">Rafael Sales</h3>
+                        <p class="text-secondary-dark font-semibold text-sm md:text-base font-brand mb-3">Especialista em Marketing Jurídico e Vendas</p>
+                        <p class="text-gray-600 text-sm md:text-base max-w-[450px] mx-auto leading-relaxed">
+                            Rafael é referência em marketing jurídico e estruturação comercial para escritórios. Já estruturou times de vendas de mais de 30 escritórios, com resultados comprovados de aumento de conversão e previsibilidade de receita.
+                        </p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" aria-label="LinkedIn de Rafael Sales" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" aria-label="Instagram de Rafael Sales" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="https://pay.kiwify.com.br/mDGPSbT" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]">
+                        <i class="fas fa-user-graduate" aria-hidden="true"></i>
+                        Quero Aprender com Esses Especialistas
+                    </a>
+                </div>
             </div>
-
-            <!-- Mentor 2 - Rafael Sales -->
-            <div class="instructor-card">
-              <div class="instructor-card__image">
-                <!-- Substitua o src pelo caminho da foto do Rafael Sales -->
-                <img
-                  src="https://ui-avatars.com/api/?name=Rafael+Sales&background=061e4e&color=daad57&size=160&font-size=0.5"
-                  alt="Rafael Sales"
-                />
-              </div>
-              <h3>Rafael Sales</h3>
-              <p class="instructor-card__role">
-                Especialista em Marketing Jurídico e Vendas
-              </p>
-              <p class="instructor-card__bio">
-                Rafael é referência em marketing jurídico e estruturação
-                comercial para escritórios. Já estruturou times de vendas de
-                mais de 30 escritórios, com resultados comprovados de aumento de
-                conversão e previsibilidade de receita.
-              </p>
-              <div class="instructor-card__social">
-                <a href="#" aria-label="LinkedIn de Rafael Sales"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-                <a href="#" aria-label="Instagram de Rafael Sales"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-
-          <div style="text-align: center; margin-top: 40px">
-            <a
-              href="https://pay.kiwify.com.br/mDGPSbT"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn--primary btn--large"
-            >
-              <i class="fas fa-user-graduate" aria-hidden="true"></i>
-              Quero Aprender com Esses Especialistas
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
 
       <!-- ============================== -->
-      <!-- IMPACT FRASE - COPY EMOCIONAL  -->
+      <!-- IMPACT                         -->
       <!-- ============================== -->
-      <section class="section impact" aria-labelledby="impact-title">
-        <div class="container">
-          <div class="impact__content fade-in">
+      <section class="section py-12 md:py-20 bg-primary text-white text-center">
+        <div class="container mx-auto px-4">
+          <div class="max-w-[720px] mx-auto fade-in">
             <i
-              class="fas fa-quote-left impact__quote-icon"
+              class="fas fa-quote-left text-4xl text-secondary/20 mb-2"
               aria-hidden="true"
             ></i>
-            <h2 id="impact-title" class="impact__title">
+            <h2
+              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand leading-[1.2]"
+            >
               Não é apenas sobre
-              <span style="color: var(--color-secondary)"
-                >ter mais clientes</span
-              >.
+              <span class="text-secondary">ter mais clientes</span>.
             </h2>
-            <p class="impact__text">
-              É sobre construir um escritório <strong>capaz de crescer</strong>.
+            <p
+              class="text-xl md:text-2xl font-semibold text-secondary font-brand mt-2"
+            >
+              É sobre construir um escritório
+              <strong class="text-white">capaz de crescer</strong>.
             </p>
-            <div class="impact__list">
-              <p>
-                <span class="impact__highlight">⚠️ Captar sem vender</span> gera
-                desperdício
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-[520px] mx-auto mt-6 text-left"
+            >
+              <p
+                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
+              >
+                <span class="text-secondary font-bold"
+                  >⚠️ Captar sem vender</span
+                >
+                gera desperdício
               </p>
-              <p>
-                <span class="impact__highlight">⚠️ Vender sem operação</span>
+              <p
+                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
+              >
+                <span class="text-secondary font-bold"
+                  >⚠️ Vender sem operação</span
+                >
                 gera problema
               </p>
-              <p>
-                <span class="impact__highlight">⚠️ Contratar sem gestão</span>
+              <p
+                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
+              >
+                <span class="text-secondary font-bold"
+                  >⚠️ Contratar sem gestão</span
+                >
                 gera custo
               </p>
-              <p>
-                <span class="impact__highlight">⚠️ Crescer sem estrutura</span>
+              <p
+                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
+              >
+                <span class="text-secondary font-bold"
+                  >⚠️ Crescer sem estrutura</span
+                >
                 gera caos
               </p>
             </div>
-            <p class="impact__conclusion">
-              Nos dias <strong>18 e 19 de setembro</strong>, você vai descobrir
-              o protocolo que conecta
-              <strong>marketing, vendas, gestão e operação</strong> para
-              construir um escritório preparado para o próximo nível.
+            <p class="text-lg text-white/90 leading-relaxed mt-6">
+              Nos dias
+              <strong class="text-secondary">18 e 19 de setembro</strong>, você
+              vai descobrir o protocolo que conecta
+              <strong class="text-secondary"
+                >marketing, vendas, gestão e operação</strong
+              >
+              para construir um escritório preparado para o próximo nível.
             </p>
-            <div style="margin-top: 32px">
+            <div class="mt-8">
               <a
                 href="https://pay.kiwify.com.br/mDGPSbT"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn btn--primary btn--large"
-                style="
-                  background: var(--color-secondary);
-                  color: var(--color-primary);
-                "
+                class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
               >
                 <i class="fas fa-fire" aria-hidden="true"></i>
                 Quero Construir um Escritório que Cresce com Estrutura
@@ -759,113 +1178,133 @@
       </section>
 
       <!-- ============================== -->
-      <!-- FORMULÁRIO DE PRÉ-CADASTRO     -->
+      <!-- FORMULÁRIO                     -->
       <!-- ============================== -->
-      <section
-        class="section form-section"
-        id="inscricao"
-        aria-labelledby="form-title"
-      >
-        <div class="container">
-          <div class="section__header fade-in">
-            <h2 class="section__title" id="form-title">
+      <section class="section py-12 md:py-20 bg-[#f8f6f0]" id="inscricao">
+        <div class="container mx-auto px-4">
+          <div class="text-center max-w-3xl mx-auto fade-in">
+            <h2
+              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
+            >
               Pré-cadastre-se
-              <span style="color: var(--color-secondary)"
-                >e garanta sua vaga</span
-              >
+              <span class="text-secondary">e garanta sua vaga</span>
             </h2>
-            <div class="section__divider"></div>
-            <p class="section__subtitle">
+            <div
+              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
+            ></div>
+            <p class="text-lg text-gray-600">
               As vagas são limitadas. Preencha seus dados e receba
-              <strong>acesso exclusivo</strong> ao evento.
+              <strong class="text-primary">acesso exclusivo</strong> ao evento.
             </p>
           </div>
 
           <form
-            class="form fade-in"
+            class="max-w-[520px] mx-auto bg-white p-8 md:p-10 rounded-xl shadow-md fade-in"
             id="preRegisterForm"
             novalidate
-            aria-label="Formulário de pré-cadastro"
           >
-            <div class="form__group">
-              <label for="name" class="form__label">Seu nome completo</label>
+            <div class="mb-5">
+              <label
+                for="name"
+                class="block font-semibold text-sm text-primary font-brand mb-1.5"
+                >Seu nome completo</label
+              >
               <input
                 type="text"
                 id="name"
-                class="form__input"
+                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
                 placeholder="Digite seu nome"
                 required
-                aria-required="true"
               />
-              <span class="form__error" id="nameError" role="alert"></span>
+              <span
+                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
+                id="nameError"
+                role="alert"
+              ></span>
             </div>
 
-            <div class="form__group">
-              <label for="email" class="form__label">Seu melhor e-mail</label>
+            <div class="mb-5">
+              <label
+                for="email"
+                class="block font-semibold text-sm text-primary font-brand mb-1.5"
+                >Seu melhor e-mail</label
+              >
               <input
                 type="email"
                 id="email"
-                class="form__input"
+                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
                 placeholder="Digite seu e-mail"
                 required
-                aria-required="true"
               />
-              <span class="form__error" id="emailError" role="alert"></span>
+              <span
+                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
+                id="emailError"
+                role="alert"
+              ></span>
             </div>
 
-            <div class="form__group">
-              <label for="phone" class="form__label">WhatsApp com DDD</label>
+            <div class="mb-5">
+              <label
+                for="phone"
+                class="block font-semibold text-sm text-primary font-brand mb-1.5"
+                >WhatsApp com DDD</label
+              >
               <input
                 type="tel"
                 id="phone"
-                class="form__input"
+                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
                 placeholder="(00) 00000-0000"
                 required
-                aria-required="true"
               />
-              <span class="form__error" id="phoneError" role="alert"></span>
+              <span
+                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
+                id="phoneError"
+                role="alert"
+              ></span>
             </div>
 
-            <div class="form__group">
-              <label for="city" class="form__label">Cidade e estado</label>
+            <div class="mb-5">
+              <label
+                for="city"
+                class="block font-semibold text-sm text-primary font-brand mb-1.5"
+                >Cidade e estado</label
+              >
               <input
                 type="text"
                 id="city"
-                class="form__input"
+                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
                 placeholder="Ex: São Paulo - SP"
                 required
-                aria-required="true"
               />
-              <span class="form__error" id="cityError" role="alert"></span>
+              <span
+                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
+                id="cityError"
+                role="alert"
+              ></span>
             </div>
 
             <button
               type="submit"
-              class="btn btn--primary btn--large form__submit"
+              class="form__submit w-full flex items-center justify-center gap-2 px-6 py-4 bg-secondary text-primary font-bold font-brand text-base rounded-xl hover:bg-secondary-light transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
             >
               <i class="fas fa-paper-plane" aria-hidden="true"></i>
               Garantir Minha Vaga Agora
             </button>
 
-            <p
-              style="
-                text-align: center;
-                font-size: 0.8rem;
-                color: var(--color-gray);
-                margin-top: 12px;
-              "
-            >
+            <p class="text-center text-sm text-gray-500 mt-3">
               🔒 Seus dados estão seguros. Não enviaremos spam.
             </p>
 
             <div
-              class="form__success"
+              class="form__success text-center p-5 text-green-600 hidden"
               id="formSuccess"
               role="status"
-              style="display: none"
             >
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              <p>
+              <i
+                class="fas fa-check-circle text-3xl block mb-2"
+                aria-hidden="true"
+              ></i>
+              <p class="font-semibold">
                 Pré-cadastro realizado com sucesso! 📩 Em breve você receberá o
                 link de acesso exclusivo.
               </p>
@@ -875,48 +1314,40 @@
       </section>
 
       <!-- ============================== -->
-      <!-- CTA FINAL - COPY DE URGÊNCIA   -->
+      <!-- CTA FINAL                      -->
       <!-- ============================== -->
-      <section class="section cta-final" aria-labelledby="cta-title">
-        <div class="container">
-          <div class="cta-final__content fade-in">
-            <h2 class="cta-final__title" id="cta-title">
-              PROTOCOLO
-              <span style="color: var(--color-secondary)">ADV SCALE</span>
+      <section class="section py-12 md:py-20 bg-white text-center">
+        <div class="container mx-auto px-4">
+          <div class="max-w-[600px] mx-auto fade-in">
+            <h2
+              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
+            >
+              PROTOCOLO <span class="text-secondary">ADV SCALE</span>
             </h2>
-            <p class="cta-final__subtitle">
+            <p class="text-lg text-gray-600 font-brand mt-2">
               Marketing. Vendas. Gestão. Estratégia. Escala.
             </p>
-            <p class="cta-final__date">
+            <p
+              class="inline-flex items-center gap-2 font-semibold text-secondary-dark font-brand mt-2"
+            >
               <i class="fas fa-calendar-alt" aria-hidden="true"></i> 18 e 19 de
               setembro | 100% online e ao vivo
             </p>
-            <p
-              style="
-                font-size: 1.1rem;
-                color: var(--color-primary);
-                margin-bottom: 24px;
-                font-weight: 600;
-              "
-            >
+            <p class="text-lg text-primary font-semibold font-brand mt-4">
               🚀 <strong>Últimas vagas disponíveis</strong> — não fique de fora
             </p>
-            <a
-              href="https://pay.kiwify.com.br/mDGPSbT"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn--primary btn--large cta-final__btn"
-            >
-              <i class="fas fa-check-circle" aria-hidden="true"></i>
-              Quero Participar do ADV Scale Agora
-            </a>
-            <p
-              style="
-                font-size: 0.8rem;
-                color: var(--color-gray);
-                margin-top: 16px;
-              "
-            >
+            <div class="mt-6">
+              <a
+                href="https://pay.kiwify.com.br/mDGPSbT"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
+              >
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                Quero Participar do ADV Scale Agora
+              </a>
+            </div>
+            <p class="text-sm text-gray-500 font-brand mt-4">
               ✅ Acesso imediato à área de membros • 7 dias de garantia
               incondicional
             </p>
@@ -928,12 +1359,21 @@
     <!-- ============================== -->
     <!-- RODAPÉ                         -->
     <!-- ============================== -->
-    <footer class="footer" role="contentinfo">
-      <div class="container footer__container">
-        <img src="assets/Logo_ADV_3.png" alt="ADV Scale" class="footer__logo-img" />
-        <p class="footer__copy">
-          &copy; 2026 ADV Scale. Todos os direitos reservados
-        </p>
+    <footer
+      class="bg-primary text-white/50 py-8 text-center"
+      role="contentinfo"
+    >
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center gap-2">
+          <img
+            src="assets/Logo_ADV_3.png"
+            alt="ADV Scale"
+            class="h-12 md:h-16 w-auto max-w-[200px] object-contain opacity-90"
+          />
+          <p class="text-sm">
+            &copy; 2026 ADV Scale. Todos os direitos reservados
+          </p>
+        </div>
       </div>
     </footer>
 
@@ -941,15 +1381,13 @@
     <!-- BOTÃO FLUTUANTE (MOBILE)      -->
     <!-- ============================== -->
     <div
-      class="floating-cta"
-      id="floatingCta"
-      aria-label="Botão flutuante de inscrição"
+      class="floating-cta fixed bottom-0 left-0 right-0 z-[999] bg-primary p-3 border-t-2 border-secondary block md:hidden"
     >
       <a
         href="https://pay.kiwify.com.br/mDGPSbT"
         target="_blank"
         rel="noopener noreferrer"
-        class="floating-cta__link"
+        class="floating-cta__link flex items-center justify-center gap-2 bg-secondary text-primary font-bold font-brand text-base py-3.5 px-6 rounded-xl hover:bg-secondary-light transition-all w-full"
       >
         <i class="fas fa-rocket" aria-hidden="true"></i>
         <span>Garantir Minha Vaga</span>
