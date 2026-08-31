@@ -2,26 +2,20 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      ADV Scale - Transforme seu Escritório em uma Máquina de Crescimento
+      Protocolo ADV Scale — Estruture, venda e escale seu escritório
     </title>
     <meta
       name="description"
-      content="ADV Scale: Imersão online para advogados que querem estruturar, vender, gerir e escalar seu escritório. 18 e 19 de setembro."
+      content="Imersão online de 2 dias para advogados que querem estruturar, vender, gerir e escalar o escritório. 18 e 19 de setembro — turma fundadora."
     />
-
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&family=Montserrat:wght@300;400;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -31,1336 +25,964 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <!-- Estilos customizados -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Configuração Tailwind -->
+    <!-- Tokens estilo shadcn: cores expostas como HSL via CSS var, consumidas pelo Tailwind -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: "#061e4e",
-              secondary: "#daad57",
-              "secondary-light": "#e8c87a",
-              "secondary-dark": "#c49a3f",
+              border: "hsl(var(--border))",
+              background: "hsl(var(--background))",
+              foreground: "hsl(var(--foreground))",
+              primary: {
+                DEFAULT: "hsl(var(--primary))",
+                foreground: "hsl(var(--primary-foreground))",
+                soft: "hsl(var(--primary-soft))",
+              },
+              secondary: {
+                DEFAULT: "hsl(var(--secondary))",
+                foreground: "hsl(var(--secondary-foreground))",
+                light: "hsl(var(--secondary-light))",
+              },
+              muted: {
+                DEFAULT: "hsl(var(--muted))",
+                foreground: "hsl(var(--muted-foreground))",
+              },
+              destructive: "hsl(var(--destructive))",
+              card: "hsl(var(--card))",
+            },
+            borderRadius: {
+              DEFAULT: "var(--radius)",
             },
             fontFamily: {
-              brand: ["Montserrat", "Inter", "sans-serif"],
-              sans: ["Inter", "sans-serif"],
+              display: ["Fraunces", "serif"],
+              sans: ["IBM Plex Sans", "sans-serif"],
             },
           },
         },
       };
     </script>
+
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+
+  <body class="bg-background text-foreground font-sans antialiased">
     <!-- ============================== -->
-    <!-- CABEÇALHO / MENU               -->
+    <!-- HEADER                         -->
     <!-- ============================== -->
     <header
-      class="fixed top-0 left-0 right-0 z-[1000] bg-white shadow-sm h-[84px] flex items-center"
-      role="banner"
+      class="header fixed top-0 inset-x-0 z-50 bg-background/90 backdrop-blur border-b border-border"
     >
       <div
-        class="container mx-auto px-4 md:px-6 flex items-center justify-between"
+        class="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-between h-[76px]"
       >
         <a
-          href="#"
-          class="header__logo"
-          aria-label="ADV Scale - Página inicial"
+          href="#top"
+          class="flex items-center gap-2"
+          aria-label="ADV Scale - Início"
         >
           <img
-            src="assets/Logo_ADV_2.png"
-            alt="Logo ADV Scale"
-            class="h-14 md:h-[72px] lg:h-[90px] w-auto max-w-[220px] object-contain"
+            src="https://advscale.vercel.app/assets/Logo_ADV_2.png"
+            alt="ADV Scale"
+            class="h-8 w-auto"
           />
         </a>
 
-        <button
-          class="header__menu-toggle lg:hidden bg-none border-none text-2xl text-primary cursor-pointer p-2 rounded-lg hover:bg-primary/5 transition-colors"
-          id="menuToggle"
-          aria-label="Abrir menu de navegação"
-          aria-expanded="false"
-        >
-          <i class="fas fa-bars" aria-hidden="true"></i>
-          <span class="sr-only">Menu</span>
-        </button>
-
         <nav
-          class="header__nav hidden lg:block"
-          id="mainNav"
-          role="navigation"
+          class="hidden lg:flex items-center gap-8 text-sm font-medium"
           aria-label="Menu principal"
         >
-          <ul class="flex items-center gap-1">
-            <li>
-              <a
-                href="#sobre"
-                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
-                >Sobre</a
-              >
-            </li>
-            <li>
-              <a
-                href="#pilares"
-                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
-                >Conteúdo</a
-              >
-            </li>
-            <li>
-              <a
-                href="#protocolo"
-                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
-                >Protocolo</a
-              >
-            </li>
-            <li>
-              <a
-                href="#publico"
-                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
-                >Público</a
-              >
-            </li>
-            <li>
-              <a
-                href="#instrutores"
-                class="block px-4 py-2 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 hover:text-secondary-dark transition-colors text-sm"
-                >Mentores</a
-              >
-            </li>
-            <li>
-              <a
-                href="#inscricao"
-                class="block px-6 py-2 font-semibold font-brand text-primary bg-secondary rounded-full hover:bg-secondary-light transition-colors text-sm"
-                >Garantir Minha Vaga</a
-              >
-            </li>
-          </ul>
+          <a href="#protocolo" class="hover:text-secondary transition-colors"
+            >O protocolo</a
+          >
+          <a href="#pilares" class="hover:text-secondary transition-colors"
+            >Pilares</a
+          >
+          <a href="#mentores" class="hover:text-secondary transition-colors"
+            >Mentores</a
+          >
+          <a href="#faq" class="hover:text-secondary transition-colors"
+            >Perguntas</a
+          >
         </nav>
 
-        <!-- Menu Mobile -->
-        <nav
-          class="header__nav-mobile hidden absolute top-[84px] left-0 right-0 bg-white shadow-lg border-t-2 border-secondary p-4 lg:hidden"
-          id="mainNavMobile"
-          role="navigation"
-          aria-label="Menu mobile"
+        <a
+          href="#inscricao"
+          class="btn btn-primary hidden lg:inline-flex h-10 px-5 text-sm"
         >
-          <ul class="flex flex-col gap-2">
-            <li>
-              <a
-                href="#sobre"
-                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
-                >Sobre</a
-              >
-            </li>
-            <li>
-              <a
-                href="#pilares"
-                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
-                >Conteúdo</a
-              >
-            </li>
-            <li>
-              <a
-                href="#protocolo"
-                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
-                >Protocolo</a
-              >
-            </li>
-            <li>
-              <a
-                href="#publico"
-                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
-                >Público</a
-              >
-            </li>
-            <li>
-              <a
-                href="#instrutores"
-                class="block px-4 py-3 font-semibold font-brand text-primary rounded-lg hover:bg-secondary/15 transition-colors"
-                >Mentores</a
-              >
-            </li>
-            <li>
-              <a
-                href="#inscricao"
-                class="block px-4 py-3 font-semibold font-brand text-center text-primary bg-secondary rounded-lg hover:bg-secondary-light transition-colors"
-                >Garantir Minha Vaga</a
-              >
-            </li>
-          </ul>
-        </nav>
+          Garantir vaga
+        </a>
+
+        <button
+          id="menuToggle"
+          class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded text-primary"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars text-lg" aria-hidden="true"></i>
+        </button>
       </div>
+
+      <nav
+        id="mainNavMobile"
+        class="header__nav-mobile lg:hidden border-t border-border bg-background"
+        aria-label="Menu mobile"
+      >
+        <ul class="flex flex-col px-6 py-3">
+          <li>
+            <a
+              href="#protocolo"
+              class="block py-3 text-sm font-medium border-b border-border"
+              >O protocolo</a
+            >
+          </li>
+          <li>
+            <a
+              href="#pilares"
+              class="block py-3 text-sm font-medium border-b border-border"
+              >Pilares</a
+            >
+          </li>
+          <li>
+            <a
+              href="#mentores"
+              class="block py-3 text-sm font-medium border-b border-border"
+              >Mentores</a
+            >
+          </li>
+          <li>
+            <a
+              href="#faq"
+              class="block py-3 text-sm font-medium border-b border-border"
+              >Perguntas</a
+            >
+          </li>
+          <li class="pt-4">
+            <a href="#inscricao" class="btn btn-primary w-full h-11"
+              >Garantir vaga</a
+            >
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <main class="pt-[84px]">
+    <main id="top" class="pt-[76px]">
       <!-- ============================== -->
       <!-- HERO                           -->
       <!-- ============================== -->
+      <section class="py-14 md:py-20">
+        <div
+          class="max-w-6xl mx-auto px-6 md:px-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-start"
+        >
+          <div class="fade-in">
+            <span class="badge">
+              <span class="badge__dot"></span>
+              Turma fundadora — vagas limitadas
+            </span>
+
+            <h1
+              class="font-display font-medium text-4xl md:text-6xl leading-[1.1] tracking-tight mt-6 mb-6"
+            >
+              Um protocolo para tirar seu escritório da dependência de
+              indicação.
+            </h1>
+
+            <p class="text-lg text-muted-foreground max-w-xl mb-8">
+              Em dois dias, Pedro Castro e Rafael Sales abrem o método que usam
+              para operar os próprios escritórios: como estruturar marketing,
+              vendas, gestão e escala em um sistema só — sem depender de você
+              para funcionar.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+              <a href="#inscricao" class="btn btn-primary h-13 px-8 text-base">
+                <i
+                  class="fa-solid fa-arrow-right-to-bracket"
+                  aria-hidden="true"
+                ></i>
+                Garantir minha vaga
+              </a>
+              <a href="#protocolo" class="btn btn-outline h-13 px-8 text-base">
+                Ver o que está incluído
+              </a>
+            </div>
+
+           
+          </div>
+
+          <div class="docket fade-in">
+            <div
+              class="flex items-baseline justify-between border-b border-white/15 pb-4 mb-6"
+            >
+              <span class="text-xs text-white/60 font-medium"
+                >Prazo de inscrição</span
+              >
+              <span class="font-display text-secondary-light text-sm"
+                >Protocolo Nº 001</span
+              >
+            </div>
+
+            <p class="text-sm text-white/85 mb-5">
+              18 e 19 de setembro · imersão ao vivo, 100% online
+            </p>
+
+            <div class="grid grid-cols-4 gap-2.5 mb-6" id="countdown">
+              <div class="cd-cell">
+                <div class="cd-num" id="days">00</div>
+                <div class="cd-unit">dias</div>
+              </div>
+              <div class="cd-cell">
+                <div class="cd-num" id="hours">00</div>
+                <div class="cd-unit">horas</div>
+              </div>
+              <div class="cd-cell">
+                <div class="cd-num" id="minutes">00</div>
+                <div class="cd-unit">min</div>
+              </div>
+              <div class="cd-cell">
+                <div class="cd-num" id="seconds">00</div>
+                <div class="cd-unit">seg</div>
+              </div>
+            </div>
+
+            <p
+              class="text-sm text-white/75 border-t border-white/15 pt-4 leading-relaxed"
+            >
+              <strong class="text-white font-semibold">Acesso imediato</strong>
+              à área de membros após a inscrição. Vagas limitadas para manter o
+              acompanhamento próximo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-border" />
+
+      <!-- ============================== -->
+      <!-- PROBLEMA / CITAÇÃO             -->
+      <!-- ============================== -->
       <section
-        class="hero py-10 md:py-16 lg:py-20 text-center text-white relative overflow-hidden"
-        id="sobre"
-        style="background: linear-gradient(160deg, #061e4e 0%, #0a2a6a 100%)"
+        id="protocolo"
+        class="py-16 md:py-24 bg-card border-b border-border"
       >
         <div
-          class="absolute bottom-[-40%] right-[-20%] w-[80%] h-[80%] bg-[radial-gradient(circle,rgba(218,173,87,0.08)_0%,transparent_70%)] pointer-events-none"
-        ></div>
-        <div class="container mx-auto px-4 relative z-10">
-          <span
-            class="inline-block bg-secondary/20 text-secondary px-5 py-1.5 rounded-full text-sm font-semibold font-brand border border-secondary/20 mb-5"
-            >🔥 Últimas vagas | Evento 100% online</span
-          >
-          <h1
-            class="text-4xl md:text-5xl lg:text-7xl font-extrabold font-brand leading-[1.1] tracking-[-0.02em]"
-            id="hero-title"
-          >
-            <span
-              class="block font-normal text-lg md:text-2xl lg:text-3xl text-secondary tracking-[0.05em] mb-1"
-              >PROTOCOLO</span
-            >
-            <strong>ADV SCALE</strong>
-          </h1>
-          <p
-            class="text-lg md:text-xl lg:text-2xl text-white/90 max-w-[600px] mx-auto mt-4 leading-relaxed"
-          >
-            Em 2 dias, transforme seu escritório em uma operação que atrai,
-            converte e escala —
-            <strong class="text-secondary">sem depender de indicações</strong>.
-          </p>
-          <div
-            class="inline-flex items-center gap-3 text-secondary font-semibold font-brand bg-secondary/10 px-5 py-2 rounded-full mt-5 mb-7"
-          >
-            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-            <span>18 e 19 de setembro | 100% online e ao vivo</span>
-          </div>
-
-          <!-- Contador -->
-          <div
-            class="flex justify-center gap-4 md:gap-6 mt-6 mb-8"
-            id="countdown"
-          >
-            <div
-              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
-            >
-              <span
-                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
-                id="days"
-                >00</span
-              >
-              <span
-                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
-                >Dias</span
-              >
-            </div>
-            <div
-              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
-            >
-              <span
-                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
-                id="hours"
-                >00</span
-              >
-              <span
-                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
-                >Horas</span
-              >
-            </div>
-            <div
-              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
-            >
-              <span
-                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
-                id="minutes"
-                >00</span
-              >
-              <span
-                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
-                >Minutos</span
-              >
-            </div>
-            <div
-              class="flex flex-col items-center bg-white/10 backdrop-blur-sm px-3 py-3 md:px-6 md:py-4 rounded-xl min-w-[56px] md:min-w-[80px] border border-white/10"
-            >
-              <span
-                class="text-2xl md:text-4xl font-extrabold text-white font-brand tabular-nums"
-                id="seconds"
-                >00</span
-              >
-              <span
-                class="text-[10px] md:text-xs uppercase tracking-[0.06em] text-white/50 font-brand mt-1"
-                >Segundos</span
-              >
-            </div>
-          </div>
-
-          <a
-            href="https://pay.kiwify.com.br/mDGPSbT"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)] hover:shadow-[0_8px_24px_rgba(218,173,87,0.45)]"
-          >
-            <i class="fas fa-rocket" aria-hidden="true"></i>
-            Quero Estruturar Meu Escritório Agora
-          </a>
-          <p class="text-white/60 text-sm md:text-base font-medium mt-4">
-            ✅ Garantia de 7 dias ou seu dinheiro de volta
-          </p>
-        </div>
-      </section>
-
-      <!-- ============================== -->
-      <!-- SOBRE / PROTOCOLO              -->
-      <!-- ============================== -->
-      <section class="section py-12 md:py-20 bg-[#f8f6f0]" id="protocolo">
-        <div class="container mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto fade-in">
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
-            >
-              Chega de improviso. Seu escritório merece
-              <span class="text-secondary">crescimento com estrutura</span>.
-            </h2>
-            <div
-              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
-            ></div>
-            <p class="text-lg text-gray-600 leading-relaxed">
-              O Protocolo ADV Scale é uma imersão prática criada para advogados
-              e donos de escritórios que estão cansados de apagar incêndios e
-              querem construir uma operação que funciona
-              <strong class="text-primary">com ou sem você</strong>.
-            </p>
-            <p class="text-lg text-gray-600 leading-relaxed mt-4">
-              Durante <strong class="text-primary">2 dias intensos</strong>,
-              <strong class="text-primary">Pedro Castro</strong> e
-              <strong class="text-primary">Rafael Sales</strong> vão abrir o
-              passo a passo que já transformou dezenas de escritórios.
-            </p>
-            <blockquote
-              class="text-primary bg-white p-6 md:p-8 rounded-xl shadow-md max-w-2xl mx-auto mt-6 border-l-4 border-secondary italic text-lg leading-relaxed font-brand"
-            >
+          class="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-16"
+        >
+          <h2 class="font-display text-3xl md:text-4xl leading-tight fade-in">
+            Chega de improviso. Seu escritório merece crescer com estrutura.
+          </h2>
+          <div class="fade-in">
+            <blockquote class="note">
               <i
-                class="fas fa-quote-left text-secondary/50 text-sm mr-2"
+                class="fa-solid fa-quote-left text-secondary/40 text-xl mb-2"
                 aria-hidden="true"
               ></i>
-              "O erro mais comum é investir em marketing antes de ter estrutura.
-              Você atrai clientes, mas não consegue atender. O resultado?
-              Desperdício de dinheiro e frustração."
-              <i
-                class="fas fa-quote-right text-secondary/50 text-sm ml-2"
-                aria-hidden="true"
-              ></i>
+              <p
+                class="font-display italic text-xl leading-relaxed text-foreground"
+              >
+                O erro mais comum é investir em marketing antes de ter
+                estrutura. Você atrai clientes, mas não consegue atender. O
+                resultado: dinheiro desperdiçado e frustração.
+              </p>
+              <cite class="block not-italic text-sm text-muted-foreground mt-4"
+                >— Pedro Castro e Rafael Sales</cite
+              >
             </blockquote>
-            <div class="mt-8">
-              <a
-                href="https://pay.kiwify.com.br/mDGPSbT"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-primary font-bold font-brand rounded-xl hover:bg-secondary-light transition-all"
-              >
-                <i class="fas fa-check-circle" aria-hidden="true"></i>
-                Sim, quero construir um escritório preparado para crescer
-              </a>
+            <p class="text-muted-foreground mt-6 max-w-lg">
+              O Protocolo ADV Scale é uma imersão prática para advogados e donos
+              de escritório cansados de apagar incêndio — feita para construir
+              uma operação que funciona com ou sem você por perto.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- PILARES                        -->
+      <!-- ============================== -->
+      <section id="pilares" class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6 md:px-10">
+          <div class="section-head fade-in">
+            <span class="badge mb-4"
+              ><span class="badge__dot"></span>Conteúdo</span
+            >
+            <h2 class="font-display text-3xl md:text-4xl mb-3">
+              Os 7 pilares do protocolo
+            </h2>
+            <p class="text-muted-foreground max-w-lg">
+              Cada pilar ataca um ponto específico onde escritórios travam entre
+              "atender bem" e "crescer de verdade".
+            </p>
+          </div>
+
+          <div class="border-t border-border" id="pillarList">
+            <!-- Pilar 1 -->
+            <article class="pillar fade-in">
+              <div class="pillar__num">1</div>
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <i
+                    class="fa-solid fa-bullhorn text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  <h3 class="font-display text-xl">
+                    Posicionamento e marketing jurídico
+                  </h3>
+                </div>
+                <p class="text-muted-foreground mb-4 max-w-lg">
+                  Pare de ser invisível. Construa autoridade e faça o mercado
+                  enxergar valor no seu trabalho.
+                </p>
+                <ul class="pillar__tags">
+                  <li>Posicionamento que atrai os clientes certos</li>
+                  <li>Conteúdo que gera oportunidades reais</li>
+                  <li>Marketing jurídico que funciona na prática</li>
+                  <li>Transformar audiência em cliente</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Pilar 2 -->
+            <article class="pillar fade-in">
+              <div class="pillar__num">2</div>
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <i
+                    class="fa-solid fa-magnifying-glass-chart text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  <h3 class="font-display text-xl">
+                    Prospecção e geração de demanda
+                  </h3>
+                </div>
+                <p class="text-muted-foreground mb-4 max-w-lg">
+                  Indicação é bom, mas não escala. Crie um fluxo constante e
+                  previsível de oportunidades.
+                </p>
+                <ul class="pillar__tags">
+                  <li>Prospecção ativa e passiva</li>
+                  <li>Tráfego pago e aquisição de leads</li>
+                  <li>Canais de aquisição que funcionam</li>
+                  <li>Previsibilidade de novos clientes</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Pilar 3 -->
+            <article class="pillar fade-in">
+              <div class="pillar__num">3</div>
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <i
+                    class="fa-solid fa-handshake text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  <h3 class="font-display text-xl">
+                    Comercial para escritórios
+                  </h3>
+                </div>
+                <p class="text-muted-foreground mb-4 max-w-lg">
+                  Seu escritório não pode depender de você para vender.
+                  Estruture um time comercial que converte.
+                </p>
+                <ul class="pillar__tags">
+                  <li>Estruturação do setor comercial</li>
+                  <li>Scripts de vendas testados</li>
+                  <li>CRM e organização do funil</li>
+                  <li>Fechar mais com menos esforço</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Pilar 4 -->
+            <article class="pillar fade-in">
+              <div class="pillar__num">4</div>
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <i
+                    class="fa-solid fa-diagram-project text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  <h3 class="font-display text-xl">Gestão e processos</h3>
+                </div>
+                <p class="text-muted-foreground mb-4 max-w-lg">
+                  Crescer sem organização é o maior erro que um escritório pode
+                  cometer.
+                </p>
+                <ul class="pillar__tags">
+                  <li>Estruturação de setores e funções</li>
+                  <li>Processos e fluxos que funcionam</li>
+                  <li>Indicadores de desempenho</li>
+                  <li>Tecnologia e automação aplicadas</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Pilar 5 -->
+            <article class="pillar fade-in">
+              <div class="pillar__num">5</div>
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <i
+                    class="fa-solid fa-users-gear text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  <h3 class="font-display text-xl">
+                    Pessoas, liderança e cultura
+                  </h3>
+                </div>
+                <p class="text-muted-foreground mb-4 max-w-lg">
+                  O maior gargalo de crescimento costuma ser a dependência do
+                  dono. Aprenda a delegar e formar líderes.
+                </p>
+                <ul class="pillar__tags">
+                  <li>Montar e desenvolver um time</li>
+                  <li>Formação de líderes e delegação</li>
+                  <li>Cultura de resultado e metas</li>
+                  <li>Sair da operação sem perder controle</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Pilar 6 -->
+            <article class="pillar fade-in">
+              <div class="pillar__num">6</div>
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <i
+                    class="fa-solid fa-chart-line text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  <h3 class="font-display text-xl">
+                    Financeiro e crescimento sustentável
+                  </h3>
+                </div>
+                <p class="text-muted-foreground mb-4 max-w-lg">
+                  Faturar mais não é sinônimo de lucrar mais. Decisões baseadas
+                  em números, não em intuição.
+                </p>
+                <ul class="pillar__tags">
+                  <li>Organização financeira do escritório</li>
+                  <li>CAC e retorno sobre aquisição</li>
+                  <li>Margem e rentabilidade</li>
+                  <li>Orçamento para marketing e expansão</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Pilar 7 -->
+            <article class="pillar fade-in">
+              <div class="pillar__num">7</div>
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <i
+                    class="fa-solid fa-rocket text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  <h3 class="font-display text-xl">Escala e expansão</h3>
+                </div>
+                <p class="text-muted-foreground mb-4 max-w-lg">
+                  O que separa um escritório comum de uma verdadeira empresa
+                  jurídica?
+                </p>
+                <ul class="pillar__tags">
+                  <li>Quando e como escalar</li>
+                  <li>Como identificar gargalos de crescimento</li>
+                  <li>Novas áreas e frentes de atuação</li>
+                  <li>Expansão geográfica e operacional</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- PROTOCOLO PASSO A PASSO        -->
+      <!-- ============================== -->
+      <section class="py-16 md:py-24 bg-primary text-primary-foreground">
+        <div class="max-w-6xl mx-auto px-6 md:px-10">
+          <div class="section-head fade-in">
+            <span class="badge badge--dark mb-4"
+              ><span class="badge__dot"></span>Como se conecta</span
+            >
+            <h2 class="font-display text-3xl md:text-4xl mb-3 text-white">
+              O protocolo passo a passo
+            </h2>
+            <p class="text-white/70 max-w-lg">
+              Da atração de clientes à escala — as seis etapas seguem essa ordem
+              porque pular uma delas é o que trava a maioria dos escritórios.
+            </p>
+          </div>
+
+          <div class="flow-track fade-in">
+            <div class="flow-step">
+              <span class="flow-step__num">01</span
+              ><span class="flow-step__name">Marketing</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step__num">02</span
+              ><span class="flow-step__name">Demanda</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step__num">03</span
+              ><span class="flow-step__name">Vendas</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step__num">04</span
+              ><span class="flow-step__name">Operação</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step__num">05</span
+              ><span class="flow-step__name">Gestão</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step__num">06</span
+              ><span class="flow-step__name">Escala</span>
+            </div>
+          </div>
+
+          <div class="max-w-xl mt-14 fade-in">
+            <div class="cascade-line">
+              <i class="fa-solid fa-minus" aria-hidden="true"></i
+              ><span>Captar sem vender gera desperdício.</span>
+            </div>
+            <div class="cascade-line">
+              <i class="fa-solid fa-minus" aria-hidden="true"></i
+              ><span>Vender sem operação gera problema.</span>
+            </div>
+            <div class="cascade-line">
+              <i class="fa-solid fa-minus" aria-hidden="true"></i
+              ><span>Contratar sem gestão gera custo.</span>
+            </div>
+            <div class="cascade-line cascade-line--final">
+              <i class="fa-solid fa-minus" aria-hidden="true"></i
+              ><span>Crescer sem estrutura gera caos.</span>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ============================== -->
-      <!-- PILARES - CARROSSEL            -->
+      <!-- PÚBLICO                        -->
+      <!-- ============================== -->
+      <section id="publico" class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6 md:px-10">
+          <div class="section-head fade-in">
+            <h2 class="font-display text-3xl md:text-4xl mb-3">
+              Esse protocolo é para você se...
+            </h2>
+            <p class="text-muted-foreground">
+              Reconheça sua situação atual antes de decidir.
+            </p>
+          </div>
+
+          <div
+            class="grid md:grid-cols-2 gap-x-10 border-t border-border pt-2 fade-in"
+          >
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Quer aumentar o <strong>faturamento</strong> do escritório, mas
+                não sabe por onde começar
+              </p>
+            </div>
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Ainda depende de <strong>indicações</strong> e quer um fluxo
+                previsível de clientes
+              </p>
+            </div>
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Gera leads, mas tem <strong>baixa conversão</strong> e não sabe
+                o que fazer
+              </p>
+            </div>
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Está <strong>sobrecarregado</strong> com a operação e sem tempo
+                para o que importa
+              </p>
+            </div>
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Tem equipe, mas <strong>centraliza tudo</strong> e não consegue
+                delegar
+              </p>
+            </div>
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Cresceu, mas a <strong>gestão não acompanhou</strong> o ritmo
+              </p>
+            </div>
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Quer <strong>estruturar marketing e comercial</strong> para
+                escalar de verdade
+              </p>
+            </div>
+            <div class="fit-item">
+              <i
+                class="fa-solid fa-check text-secondary"
+                aria-hidden="true"
+              ></i>
+              <p>
+                Quer transformar o escritório em uma
+                <strong>empresa organizada e lucrativa</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- MENTORES                       -->
       <!-- ============================== -->
       <section
-        class="section py-12 md:py-20 bg-white overflow-hidden"
-        id="pilares"
+        id="mentores"
+        class="py-16 md:py-24 bg-card border-y border-border"
       >
-        <div class="container mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto fade-in">
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
-            >
-              O que você vai aprender
-              <span class="text-secondary"
-                >para transformar seu escritório</span
-              >
+        <div class="max-w-6xl mx-auto px-6 md:px-10">
+          <div class="section-head fade-in">
+            <h2 class="font-display text-3xl md:text-4xl mb-3">
+              Quem conduz o protocolo
             </h2>
-            <div
-              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
-            ></div>
-            <p class="text-lg text-gray-600">
-              7 pilares que vão mudar a forma como você enxerga seu negócio
+            <p class="text-muted-foreground">
+              Dois advogados que aplicam o método nos próprios escritórios antes
+              de ensiná-lo.
             </p>
           </div>
 
-          <div
-            class="carousel relative max-w-[900px] mx-auto px-2"
-            id="carousel"
-          >
-            <div class="overflow-hidden rounded-xl" id="carouselTrackWrapper">
-              <div
-                class="flex transition-transform duration-[600ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-                id="carouselTrack"
-              >
-                <!-- Slides gerados via JavaScript -->
-                <div
-                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
-                  >
-                    <i class="fas fa-bullhorn" aria-hidden="true"></i>
-                  </div>
-                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
-                    1. Posicionamento e Marketing Jurídico
-                  </h3>
-                  <p class="text-gray-500 text-sm mb-3">
-                    Pare de ser invisível. Aprenda a construir autoridade e
-                    fazer o mercado
-                    <strong class="text-primary">enxergar valor</strong> no seu
-                    trabalho.
-                  </p>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Posicionamento que atrai os clientes certos
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Conteúdo que gera oportunidades reais
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Marketing jurídico que funciona na prática
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Como transformar audiência em clientes
-                    </li>
-                  </ul>
-                </div>
-
-                <div
-                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
-                  >
-                    <i class="fas fa-users" aria-hidden="true"></i>
-                  </div>
-                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
-                    2. Prospecção e Geração de Demanda
-                  </h3>
-                  <p class="text-gray-500 text-sm mb-3">
-                    Indicação é bom, mas não dá para escalar. Crie um fluxo
-                    <strong class="text-primary">constante e previsível</strong>
-                    de oportunidades.
-                  </p>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Estratégias de prospecção ativa e passiva
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Tráfego pago e aquisição de leads
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Canais de aquisição que realmente funcionam
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Como prever a entrada de novos clientes
-                    </li>
-                  </ul>
-                </div>
-
-                <div
-                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
-                  >
-                    <i class="fas fa-handshake" aria-hidden="true"></i>
-                  </div>
-                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
-                    3. Comercial para Escritórios
-                  </h3>
-                  <p class="text-gray-500 text-sm mb-3">
-                    Seu escritório
-                    <strong class="text-primary"
-                      >não pode depender de você</strong
-                    >
-                    para vender. Estruture um time comercial que converte.
-                  </p>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Estruturação do setor comercial
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Scripts de vendas testados e aprovados
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      CRM e organização do funil
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Como fechar mais com menos esforço
-                    </li>
-                  </ul>
-                </div>
-
-                <div
-                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
-                  >
-                    <i class="fas fa-cogs" aria-hidden="true"></i>
-                  </div>
-                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
-                    4. Gestão e Processos
-                  </h3>
-                  <p class="text-gray-500 text-sm mb-3">
-                    Crescer sem organização é o
-                    <strong class="text-primary">maior erro</strong> que um
-                    escritório pode cometer.
-                  </p>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Estruturação de setores e funções
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Processos e fluxos que funcionam
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Indicadores de desempenho
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Tecnologia e automação aplicadas
-                    </li>
-                  </ul>
-                </div>
-
-                <div
-                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
-                  >
-                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                  </div>
-                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
-                    5. Pessoas, Liderança e Cultura
-                  </h3>
-                  <p class="text-gray-500 text-sm mb-3">
-                    O maior gargalo de crescimento é a
-                    <strong class="text-primary">dependência do dono</strong>.
-                    Aprenda a delegar e formar líderes.
-                  </p>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Como montar e desenvolver um time
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Formação de líderes e delegação
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Cultura de resultado e metas
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Como sair da operação sem perder o controle
-                    </li>
-                  </ul>
-                </div>
-
-                <div
-                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
-                  >
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                  </div>
-                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
-                    6. Financeiro e Crescimento Sustentável
-                  </h3>
-                  <p class="text-gray-500 text-sm mb-3">
-                    Faturar mais não é sinônimo de lucrar mais. Decisões
-                    <strong class="text-primary">baseadas em números</strong>.
-                  </p>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Organização financeira do escritório
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      CAC e retorno sobre aquisição
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Margem e rentabilidade
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Orçamento para marketing e expansão
-                    </li>
-                  </ul>
-                </div>
-
-                <div
-                  class="carousel__slide flex-[0_0_100%] p-4 md:p-6 min-h-[300px] md:min-h-[340px] bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-dark text-xl mb-4"
-                  >
-                    <i class="fas fa-rocket" aria-hidden="true"></i>
-                  </div>
-                  <h3 class="text-lg font-bold text-primary font-brand mb-2">
-                    7. Escala e Expansão
-                  </h3>
-                  <p class="text-gray-500 text-sm mb-3">
-                    O que separa um escritório comum de uma
-                    <strong class="text-primary"
-                      >verdadeira empresa jurídica</strong
-                    >?
-                  </p>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Quando e como escalar
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Como identificar gargalos de crescimento
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Novas áreas e frentes de atuação
-                    </li>
-                    <li
-                      class="pl-5 relative before:content-['›'] before:absolute before:left-0 before:text-secondary before:font-bold"
-                    >
-                      Expansão geográfica e operacional
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Controles -->
-            <div class="flex items-center justify-center gap-4 mt-6">
-              <button
-                class="carousel__btn w-11 h-11 rounded-full border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
-                id="carouselPrev"
-                aria-label="Slide anterior"
-              >
-                <i class="fas fa-chevron-left" aria-hidden="true"></i>
-              </button>
-              <div
-                class="carousel__dots flex gap-2 items-center"
-                id="carouselDots"
-              ></div>
-              <button
-                class="carousel__btn w-11 h-11 rounded-full border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
-                id="carouselNext"
-                aria-label="Próximo slide"
-              >
-                <i class="fas fa-chevron-right" aria-hidden="true"></i>
-              </button>
-            </div>
-
-            <div
-              class="w-full max-w-[400px] h-1 bg-gray-200 rounded-full mx-auto mt-4 overflow-hidden"
-            >
-              <div
-                class="carousel__progress-bar h-full bg-secondary rounded-full w-0 transition-[width] duration-300"
-                id="carouselProgress"
-              ></div>
-            </div>
-          </div>
-
-          <div class="text-center mt-10">
-            <a
-              href="https://pay.kiwify.com.br/mDGPSbT"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
-            >
-              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-              Quero Aprender Tudo Isso e Transformar Meu Escritório
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================== -->
-      <!-- FLUXO DO PROTOCOLO             -->
-      <!-- ============================== -->
-      <section class="section py-12 md:py-20 bg-[#f8f6f0]">
-        <div class="container mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto fade-in">
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
-            >
-              O Protocolo <span class="text-secondary">passo a passo</span>
-            </h2>
-            <div
-              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
-            ></div>
-            <p class="text-lg text-gray-600">
-              Da atração de clientes à escala — tudo conectado em um sistema que
-              funciona
-            </p>
-          </div>
-
-          <div
-            class="flex flex-wrap justify-center items-center gap-2 md:gap-5 max-w-[800px] mx-auto py-5"
-          >
-            <div
-              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
-            >
-              <span
-                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
-                >1</span
-              >
-              Marketing
-              <i
-                class="fas fa-arrow-right text-secondary text-xs ml-1"
-                aria-hidden="true"
-              ></i>
-            </div>
-            <div
-              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
-            >
-              <span
-                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
-                >2</span
-              >
-              Demanda
-              <i
-                class="fas fa-arrow-right text-secondary text-xs ml-1"
-                aria-hidden="true"
-              ></i>
-            </div>
-            <div
-              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
-            >
-              <span
-                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
-                >3</span
-              >
-              Vendas
-              <i
-                class="fas fa-arrow-right text-secondary text-xs ml-1"
-                aria-hidden="true"
-              ></i>
-            </div>
-            <div
-              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
-            >
-              <span
-                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
-                >4</span
-              >
-              Operação
-              <i
-                class="fas fa-arrow-right text-secondary text-xs ml-1"
-                aria-hidden="true"
-              ></i>
-            </div>
-            <div
-              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
-            >
-              <span
-                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
-                >5</span
-              >
-              Gestão
-              <i
-                class="fas fa-arrow-right text-secondary text-xs ml-1"
-                aria-hidden="true"
-              ></i>
-            </div>
-            <div
-              class="flex items-center gap-2 bg-white px-3 md:px-6 py-2.5 md:py-3 rounded-full shadow-sm border border-gray-200 font-semibold text-primary font-brand text-sm md:text-base"
-            >
-              <span
-                class="inline-flex items-center justify-center w-6 h-6 bg-secondary text-primary rounded-full text-xs font-extrabold"
-                >6</span
-              >
-              Escala
-            </div>
-          </div>
-
-          <div
-            class="max-w-[680px] mx-auto text-center text-gray-600 text-lg leading-relaxed mt-6"
-          >
-            <p>
-              <strong class="text-primary"
-                >Marketing sem estrutura é desperdício.</strong
-              >
-              Vendas sem operação é problema. Crescimento sem gestão é caos.
-            </p>
-            <p class="mt-4">
-              O Protocolo ADV Scale conecta todas essas áreas para você
-              construir um escritório que cresce
-              <strong class="text-primary"
-                >com previsibilidade e lucratividade</strong
-              >.
-            </p>
-            <p class="text-primary text-xl font-bold font-brand mt-4">
-              🎯 O objetivo é claro: <strong>crescimento com estrutura</strong>.
-            </p>
-          </div>
-
-          <div class="text-center mt-10">
-            <a
-              href="https://pay.kiwify.com.br/mDGPSbT"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
-            >
-              <i class="fas fa-arrow-right" aria-hidden="true"></i>
-              Quero Aplicar Esse Protocolo no Meu Escritório
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================== -->
-      <!-- PÚBLICO-ALVO                   -->
-      <!-- ============================== -->
-      <section class="section py-12 md:py-20 bg-white" id="publico">
-        <div class="container mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto fade-in">
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
-            >
-              Este evento é <span class="text-secondary">para você</span> se...
-            </h2>
-            <div
-              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
-            ></div>
-            <p class="text-lg text-gray-600">
-              Você se identifica com alguma dessas situações? Então o ADV Scale
-              foi feito sob medida para você.
-            </p>
-          </div>
-
-          <ul
-            class="max-w-[720px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 fade-in"
-          >
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                <strong class="text-primary"
-                  >Quer aumentar o faturamento</strong
-                >
-                do seu escritório, mas não sabe por onde começar
-              </div>
-            </li>
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                Ainda
-                <strong class="text-primary">depende de indicações</strong> e
-                quer um fluxo previsível de clientes
-              </div>
-            </li>
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                Gera leads, mas tem
-                <strong class="text-primary">baixa conversão</strong> e não sabe
-                o que fazer
-              </div>
-            </li>
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                Está <strong class="text-primary">sobrecarregado</strong> com a
-                operação e não tem tempo para o que importa
-              </div>
-            </li>
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                Tem equipe, mas
-                <strong class="text-primary">centraliza tudo</strong> e não
-                consegue delegar
-              </div>
-            </li>
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                Cresceu, mas a
-                <strong class="text-primary">gestão não acompanhou</strong> o
-                ritmo
-              </div>
-            </li>
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                Quer
-                <strong class="text-primary"
-                  >estruturar marketing e comercial</strong
-                >
-                para escalar de verdade
-              </div>
-            </li>
-            <li
-              class="flex items-start gap-3 p-4 bg-[#f8f6f0] rounded-xl border-l-4 border-secondary hover:translate-x-1 hover:shadow-md transition-all"
-            >
-              <i
-                class="fas fa-check-circle text-secondary text-xl mt-0.5 flex-shrink-0"
-                aria-hidden="true"
-              ></i>
-              <div
-                class="text-sm md:text-base text-gray-700 font-brand leading-relaxed"
-              >
-                Quer transformar seu escritório em uma
-                <strong class="text-primary"
-                  >empresa organizada, lucrativa e escalável</strong
-                >
-              </div>
-            </li>
-          </ul>
-
-          <div class="text-center mt-10">
-            <a
-              href="https://pay.kiwify.com.br/mDGPSbT"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
-            >
-              <i class="fas fa-user-check" aria-hidden="true"></i>
-              Sim, Me Reconheci. Quero Participar!
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================== -->
-      <!-- QUEM VAI TE ENSINAR            -->
-      <!-- ============================== -->
-      <section class="section py-12 md:py-20 bg-[#f8f6f0]" id="instrutores">
-        <div class="container mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto fade-in">
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
-            >
-              Quem vai te <span class="text-secondary">ensinar</span>
-            </h2>
-            <div
-              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
-            ></div>
-            <p class="text-lg text-gray-600">
-              Conheça os especialistas que vão guiar você nessa jornada de
-              transformação
-            </p>
-          </div>
-
-          <!-- ESPAÇO EXTRA PARA DESCER AS FOTOS -->
-          <div class="h-8 md:h-12"></div>
-
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[900px] mx-auto fade-in"
-          >
-            <!-- Mentor 1 - Pedro Castro -->
-            <div
-              class="text-center p-8 bg-white rounded-xl border border-gray-200 hover:-translate-y-1 hover:shadow-xl transition-all"
-            >
-              <div class="flex justify-center mb-4">
-                <img
-                  src="assets/pedro.jpg"
-                  alt="Pedro Castro"
-                  class="w-[140px] h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-full object-cover border-4 border-secondary"
-                />
-              </div>
-              <h3 class="text-xl md:text-2xl font-bold text-primary font-brand">
-                Pedro Castro
-              </h3>
-            
-              <p
-                class="text-gray-600 text-sm md:text-base max-w-[450px] mx-auto leading-relaxed"
-              >
-                Advogado, empresário e sócio-fundador do Amaral & Castro
-                Advocacia. Lidera uma operação com mais de 8 mil processos
-                protocolados e mais de 35 colaboradores, com experiência prática
-                em gestão, vendas e expansão de escritórios de advocacia.
+          <article class="mentor fade-in">
+            <img
+              src="https://advscale.vercel.app/assets/pedro.jpg"
+              alt="Pedro Castro"
+              class="mentor__photo"
+            />
+            <div>
+              <h3 class="font-display text-2xl mb-1">Pedro Castro</h3>
+              <p class="text-secondary text-sm font-semibold mb-4">
+                Sócio-fundador, Amaral &amp; Castro Advocacia
               </p>
-              <div class="flex justify-center gap-3 mt-4">
-                <a
-                  href="#"
-                  aria-label="LinkedIn de Pedro Castro"
-                  class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all"
-                >
-                  <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                </a>
-                <a
-                  href="#"
-                  aria-label="Instagram de Pedro Castro"
-                  class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all"
-                >
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Mentor 2 - Rafael Sales -->
-            <div
-              class="text-center p-8 bg-white rounded-xl border border-gray-200 hover:-translate-y-1 hover:shadow-xl transition-all"
-            >
-              <div class="flex justify-center mb-4">
-                <img
-                  src="assets/rafael.jpeg"
-                  alt="Rafael Sales"
-                  class="w-[140px] h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-full object-cover border-4 border-secondary"
-                />
-              </div>
-              <h3 class="text-xl md:text-2xl font-bold text-primary font-brand">
-                Rafael Sales
-              </h3>
-             
-              <p
-                class="text-gray-600 text-sm md:text-base max-w-[450px] mx-auto leading-relaxed"
-              >
-                Rafael Sales. Advogado trabalhista há 15 anos. Doutorando e
-                Mestre em Direito. Escritório com mais de 2 mil de processos.
+              <p class="text-muted-foreground max-w-xl mb-6">
+                Advogado e empresário. Lidera uma operação com experiência
+                prática em gestão, vendas e expansão de escritórios de advocacia
+                — construída dentro do próprio escritório, não em teoria.
               </p>
-              <div class="flex justify-center gap-3 mt-4">
-                <a
-                  href="#"
-                  aria-label="LinkedIn de Rafael Sales"
-                  class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all"
-                >
-                  <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                </a>
-                <a
-                  href="#"
-                  aria-label="Instagram de Rafael Sales"
-                  class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-secondary hover:text-primary transition-all"
-                >
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
-                </a>
+              <div class="flex flex-wrap gap-8">
+                <div class="stat">
+                  <b>8.000+</b><span>processos protocolados</span>
+                </div>
+                <div class="stat">
+                  <b>35+</b><span>colaboradores na operação</span>
+                </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="text-center mt-10">
-            <a
-              href="https://pay.kiwify.com.br/mDGPSbT"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
-            >
-              <i class="fas fa-user-graduate" aria-hidden="true"></i>
-              Quero Aprender com Esses Especialistas
-            </a>
-          </div>
+          <article class="mentor fade-in">
+            <img
+              src="https://advscale.vercel.app/assets/rafael.jpeg"
+              alt="Rafael Sales"
+              class="mentor__photo"
+            />
+            <div>
+              <h3 class="font-display text-2xl mb-1">Rafael Sales</h3>
+              <p class="text-secondary text-sm font-semibold mb-4">
+                Advogado trabalhista, mestre e doutorando em Direito
+              </p>
+              <p class="text-muted-foreground max-w-xl mb-6">
+                Advogado trabalhista há 15 anos, com escritório próprio
+                construído a partir de estrutura comercial e operacional — não
+                apenas de indicação.
+              </p>
+              <div class="flex flex-wrap gap-8">
+                <div class="stat">
+                  <b>15 anos</b><span>de atuação em Direito do Trabalho</span>
+                </div>
+                <div class="stat">
+                  <b>2.000+</b><span>processos no escritório</span>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
       <!-- ============================== -->
-      <!-- IMPACT                         -->
+      <!-- TURMA FUNDADORA                -->
       <!-- ============================== -->
-      <section class="section py-12 md:py-20 bg-primary text-white text-center">
-        <div class="container mx-auto px-4">
-          <div class="max-w-[720px] mx-auto fade-in">
+      <section class="py-16 md:py-24">
+        <div
+          class="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 md:gap-16"
+        >
+          <div class="fade-in">
+            <span class="badge mb-4"
+              ><span class="badge__dot"></span>Por que uma turma fundadora</span
+            >
+            <h2 class="font-display text-3xl md:text-4xl mb-4 leading-tight">
+              Essa é a primeira turma. Achamos melhor ser direto sobre isso.
+            </h2>
+            <p class="text-muted-foreground mb-6">
+              Não temos, ainda, uma lista de ex-alunos para mostrar — porque não
+              existe. O que existe é o método sendo aplicado nos escritórios do
+              Pedro e do Rafael há anos, com números reais de operação, não de
+              curso.
+            </p>
+            <ul class="space-y-0 border-t border-border">
+              <li class="fit-item border-b border-border py-4">
+                <i
+                  class="fa-solid fa-check text-secondary"
+                  aria-hidden="true"
+                ></i
+                ><span
+                  >O conteúdo vem da operação real dos dois escritórios — não de
+                  teoria de mercado.</span
+                >
+              </li>
+              <li class="fit-item border-b border-border py-4">
+                <i
+                  class="fa-solid fa-check text-secondary"
+                  aria-hidden="true"
+                ></i
+                ><span
+                  >Turma fundadora tem acesso direto aos mentores, com grupo
+                  reduzido e vagas limitadas.</span
+                >
+              </li>
+              <li class="fit-item border-b border-border py-4">
+                <i
+                  class="fa-solid fa-check text-secondary"
+                  aria-hidden="true"
+                ></i
+                ><span
+                  >Quem entra agora ajuda a moldar as próximas turmas — e fica
+                  com a condição de fundador.</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="guarantee-box fade-in">
             <i
-              class="fas fa-quote-left text-4xl text-secondary/20 mb-2"
+              class="fa-solid fa-users text-secondary-light text-3xl mb-4"
               aria-hidden="true"
             ></i>
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand leading-[1.2]"
-            >
-              Não é apenas sobre
-              <span class="text-secondary">ter mais clientes</span>.
-            </h2>
-            <p
-              class="text-xl md:text-2xl font-semibold text-secondary font-brand mt-2"
-            >
-              É sobre construir um escritório
-              <strong class="text-white">capaz de crescer</strong>.
+            <h3 class="font-display text-xl text-white mb-3">
+              Vagas limitadas na turma fundadora
+            </h3>
+            <p class="text-white/75 mb-6">
+              Grupo pequeno de propósito: dá pra tirar dúvida ao vivo com os
+              dois mentores nos dois dias, em vez de assistir de longe numa sala
+              com milhares de pessoas.
             </p>
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-[520px] mx-auto mt-6 text-left"
-            >
-              <p
-                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
-              >
-                <span class="text-secondary font-bold"
-                  >⚠️ Captar sem vender</span
-                >
-                gera desperdício
-              </p>
-              <p
-                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
-              >
-                <span class="text-secondary font-bold"
-                  >⚠️ Vender sem operação</span
-                >
-                gera problema
-              </p>
-              <p
-                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
-              >
-                <span class="text-secondary font-bold"
-                  >⚠️ Contratar sem gestão</span
-                >
-                gera custo
-              </p>
-              <p
-                class="p-3 bg-white/5 rounded-lg border-l-3 border-secondary font-brand"
-              >
-                <span class="text-secondary font-bold"
-                  >⚠️ Crescer sem estrutura</span
-                >
-                gera caos
-              </p>
-            </div>
-            <p class="text-lg text-white/90 leading-relaxed mt-6">
-              Nos dias
-              <strong class="text-secondary">18 e 19 de setembro</strong>, você
-              vai descobrir o protocolo que conecta
-              <strong class="text-secondary"
-                >marketing, vendas, gestão e operação</strong
-              >
-              para construir um escritório preparado para o próximo nível.
-            </p>
-            <div class="mt-8">
-              <a
-                href="https://pay.kiwify.com.br/mDGPSbT"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
-              >
-                <i class="fas fa-fire" aria-hidden="true"></i>
-                Quero Construir um Escritório que Cresce com Estrutura
-              </a>
-            </div>
+            <a href="#inscricao" class="btn btn-outline-light w-full h-12">
+              <i
+                class="fa-solid fa-arrow-right-to-bracket"
+                aria-hidden="true"
+              ></i>
+              Garantir minha vaga
+            </a>
           </div>
         </div>
       </section>
 
       <!-- ============================== -->
-      <!-- FORMULÁRIO                     -->
+      <!-- FAQ                            -->
       <!-- ============================== -->
-      <section class="section py-12 md:py-20 bg-[#f8f6f0]" id="inscricao">
-        <div class="container mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto fade-in">
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
-            >
-              Pré-cadastre-se
-              <span class="text-secondary">e garanta sua vaga</span>
+      <section id="faq" class="py-16 md:py-24 bg-card border-y border-border">
+        <div class="max-w-6xl mx-auto px-6 md:px-10">
+          <div class="section-head fade-in">
+            <h2 class="font-display text-3xl md:text-4xl">
+              Perguntas frequentes
             </h2>
-            <div
-              class="w-[60px] h-1 bg-secondary rounded-full mx-auto my-4"
-            ></div>
-            <p class="text-lg text-gray-600">
-              As vagas são limitadas. Preencha seus dados e receba
-              <strong class="text-primary">acesso exclusivo</strong> ao evento.
+          </div>
+
+          <div class="border-t border-border fade-in">
+            <details class="faq-item">
+              <summary>
+                O evento é pago?<i
+                  class="fa-solid fa-plus faq-item__icon"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <p>
+                Sim. O Protocolo ADV Scale é uma imersão paga, com acesso
+                imediato à área de membros após a inscrição.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Vai ficar gravado?<i
+                  class="fa-solid fa-plus faq-item__icon"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <p>
+                A imersão acontece ao vivo nos dias 18 e 19 de setembro. As
+                gravações ficam disponíveis na área de membros para quem
+                participar.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Preciso já ter equipe para aproveitar?<i
+                  class="fa-solid fa-plus faq-item__icon"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <p>
+                Não. O protocolo serve tanto para quem ainda opera sozinho e
+                quer estruturar antes de contratar, quanto para quem já tem
+                equipe e precisa organizar processos e delegação.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Existe reembolso se eu desistir?<i
+                  class="fa-solid fa-plus faq-item__icon"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <p>
+                Não. Por ser um evento ao vivo com turma fechada e vagas
+                limitadas, a inscrição garante seu lugar de forma definitiva —
+                não trabalhamos com reembolso após a confirmação.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Quantas vagas existem?<i
+                  class="fa-solid fa-plus faq-item__icon"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <p>
+                A turma fundadora tem vagas limitadas, para manter o
+                acompanhamento próximo dos mentores durante a imersão.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- FORMULÁRIO DE INSCRIÇÃO        -->
+      <!-- ============================== -->
+      <section id="inscricao" class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6 md:px-10">
+          <div class="section-head mx-auto text-center fade-in">
+            <h2 class="font-display text-3xl md:text-4xl mb-3">
+              Garantir minha vaga
+            </h2>
+            <p class="text-muted-foreground">
+              Preencha seus dados. Depois de enviar, você será direcionado ao
+              pagamento para confirmar a vaga na turma fundadora.
             </p>
           </div>
 
           <form
-            class="max-w-[520px] mx-auto bg-white p-8 md:p-10 rounded-xl shadow-md fade-in"
             id="preRegisterForm"
+            class="card max-w-lg mx-auto p-8 md:p-10 fade-in"
             novalidate
           >
-            <div class="mb-5">
-              <label
-                for="name"
-                class="block font-semibold text-sm text-primary font-brand mb-1.5"
-                >Seu nome completo</label
-              >
+            <div class="field">
+              <label for="name">Seu nome completo</label>
               <input
                 type="text"
                 id="name"
-                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
+                class="form__input"
                 placeholder="Digite seu nome"
                 required
               />
-              <span
-                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
-                id="nameError"
-                role="alert"
-              ></span>
+              <span class="form__error" id="nameError" role="alert"></span>
             </div>
 
-            <div class="mb-5">
-              <label
-                for="email"
-                class="block font-semibold text-sm text-primary font-brand mb-1.5"
-                >Seu melhor e-mail</label
-              >
+            <div class="field">
+              <label for="email">Seu melhor e-mail</label>
               <input
                 type="email"
                 id="email"
-                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
+                class="form__input"
                 placeholder="Digite seu e-mail"
                 required
               />
-              <span
-                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
-                id="emailError"
-                role="alert"
-              ></span>
+              <span class="form__error" id="emailError" role="alert"></span>
             </div>
 
-            <div class="mb-5">
-              <label
-                for="phone"
-                class="block font-semibold text-sm text-primary font-brand mb-1.5"
-                >WhatsApp com DDD</label
-              >
+            <div class="field">
+              <label for="phone">WhatsApp com DDD</label>
               <input
                 type="tel"
                 id="phone"
-                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
+                class="form__input"
                 placeholder="(00) 00000-0000"
                 required
               />
-              <span
-                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
-                id="phoneError"
-                role="alert"
-              ></span>
+              <span class="form__error" id="phoneError" role="alert"></span>
             </div>
 
-            <div class="mb-5">
-              <label
-                for="city"
-                class="block font-semibold text-sm text-primary font-brand mb-1.5"
-                >Cidade e estado</label
-              >
+            <div class="field">
+              <label for="city">Cidade e estado</label>
               <input
                 type="text"
                 id="city"
-                class="w-full px-4 py-3 font-sans text-base border-2 border-gray-200 rounded-lg focus:border-secondary focus:shadow-[0_0_0_4px_rgba(218,173,87,0.15)] outline-none transition-all"
+                class="form__input"
                 placeholder="Ex: São Paulo - SP"
                 required
               />
-              <span
-                class="form__error block text-sm text-red-600 mt-1 min-h-[20px]"
-                id="cityError"
-                role="alert"
-              ></span>
+              <span class="form__error" id="cityError" role="alert"></span>
             </div>
 
             <button
               type="submit"
-              class="form__submit w-full flex items-center justify-center gap-2 px-6 py-4 bg-secondary text-primary font-bold font-brand text-base rounded-xl hover:bg-secondary-light transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
+              class="btn btn-primary w-full h-13 text-base form__submit"
             >
-              <i class="fas fa-paper-plane" aria-hidden="true"></i>
-              Garantir Minha Vaga Agora
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+              Garantir minha vaga agora
             </button>
 
-            <p class="text-center text-sm text-gray-500 mt-3">
-              🔒 Seus dados estão seguros. Não enviaremos spam.
+            <p class="text-center text-xs text-muted-foreground mt-4">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              Seus dados estão seguros. Não enviaremos spam.
             </p>
 
-            <div
-              class="form__success text-center p-5 text-green-600 hidden"
-              id="formSuccess"
-              role="status"
-            >
-              <i
-                class="fas fa-check-circle text-3xl block mb-2"
-                aria-hidden="true"
-              ></i>
-              <p class="font-semibold">
-                Pré-cadastro realizado com sucesso! 📩 Em breve você receberá o
-                link de acesso exclusivo.
+            <div class="form__success hidden" id="formSuccess" role="status">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+              <p>
+                Pré-cadastro realizado com sucesso! Você será redirecionado para
+                confirmar sua vaga.
               </p>
             </div>
           </form>
@@ -1370,87 +992,63 @@
       <!-- ============================== -->
       <!-- CTA FINAL                      -->
       <!-- ============================== -->
-      <section class="section py-12 md:py-20 bg-white text-center">
-        <div class="container mx-auto px-4">
-          <div class="max-w-[600px] mx-auto fade-in">
-            <h2
-              class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-brand text-primary tracking-[-0.02em] leading-[1.2]"
+      <section class="py-16 md:py-24 bg-primary text-white">
+        <div class="max-w-6xl mx-auto px-6 md:px-10">
+          <h2
+            class="font-display text-3xl md:text-5xl max-w-2xl mb-5 text-white"
+          >
+            18 e 19 de setembro. Turma fundadora, vagas limitadas.
+          </h2>
+          <p class="text-white/70 max-w-lg mb-9 text-lg">
+            Entre na primeira turma do Protocolo ADV Scale e comece a construir
+            um escritório que cresce com estrutura, direto com quem aplica o
+            método na prática.
+          </p>
+          <a href="#inscricao" class="btn btn-secondary h-13 px-8 text-base">
+            <i class="fa-solid fa-check" aria-hidden="true"></i>
+            Garantir minha vaga agora
+          </a>
+          <div
+            class="flex flex-wrap gap-6 mt-9 pt-6 border-t border-white/15 text-sm text-white/60"
+          >
+            <span
+              ><i class="fa-solid fa-video mr-2" aria-hidden="true"></i>100%
+              online e ao vivo</span
             >
-              PROTOCOLO <span class="text-secondary">ADV SCALE</span>
-            </h2>
-            <p class="text-lg text-gray-600 font-brand mt-2">
-              Marketing. Vendas. Gestão. Estratégia. Escala.
-            </p>
-            <p
-              class="inline-flex items-center gap-2 font-semibold text-secondary-dark font-brand mt-2"
+            <span
+              ><i class="fa-solid fa-bolt mr-2" aria-hidden="true"></i>Acesso
+              imediato à área de membros</span
             >
-              <i class="fas fa-calendar-alt" aria-hidden="true"></i> 18 e 19 de
-              setembro | 100% online e ao vivo
-            </p>
-            <p class="text-lg text-primary font-semibold font-brand mt-4">
-              🚀 <strong>Últimas vagas disponíveis</strong> — não fique de fora
-            </p>
-            <div class="mt-6">
-              <a
-                href="https://pay.kiwify.com.br/mDGPSbT"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-secondary text-primary font-bold font-brand text-base md:text-lg rounded-xl hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-[0_4px_16px_rgba(218,173,87,0.35)]"
-              >
-                <i class="fas fa-check-circle" aria-hidden="true"></i>
-                Quero Participar do ADV Scale Agora
-              </a>
-            </div>
-            <p class="text-sm text-gray-500 font-brand mt-4">
-              ✅ Acesso imediato à área de membros • 7 dias de garantia
-              incondicional
-            </p>
+            <span
+              ><i class="fa-solid fa-users mr-2" aria-hidden="true"></i>Turma
+              fechada, vagas limitadas</span
+            >
           </div>
         </div>
       </section>
     </main>
 
-    <!-- ============================== -->
-    <!-- RODAPÉ                         -->
-    <!-- ============================== -->
-    <footer
-      class="bg-primary text-white/50 py-8 text-center"
-      role="contentinfo"
-    >
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col items-center gap-2">
-          <img
-            src="assets/Logo_ADV_3.png"
-            alt="ADV Scale"
-            class="h-12 md:h-16 w-auto max-w-[200px] object-contain opacity-90"
-          />
-          <p class="text-sm">
-            &copy; 2026 ADV Scale. Todos os direitos reservados
-          </p>
-        </div>
+    <footer class="bg-primary-soft text-white/50 py-10 text-sm">
+      <div
+        class="max-w-6xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <img
+          src="https://advscale.vercel.app/assets/Logo_ADV_3.png"
+          alt="ADV Scale"
+          class="h-6 opacity-80"
+        />
+        <p>© 2026 ADV Scale. Todos os direitos reservados.</p>
       </div>
     </footer>
 
-    <!-- ============================== -->
-    <!-- BOTÃO FLUTUANTE (MOBILE)      -->
-    <!-- ============================== -->
-    <div
-      class="floating-cta fixed bottom-0 left-0 right-0 z-[999] bg-primary p-3 border-t-2 border-secondary block md:hidden"
-    >
-      <a
-        href="https://pay.kiwify.com.br/mDGPSbT"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="floating-cta__link flex items-center justify-center gap-2 bg-secondary text-primary font-bold font-brand text-base py-3.5 px-6 rounded-xl hover:bg-secondary-light transition-all w-full"
-      >
-        <i class="fas fa-rocket" aria-hidden="true"></i>
-        <span>Garantir Minha Vaga</span>
+    <!-- Botão flutuante mobile -->
+    <div class="floating-cta lg:hidden">
+      <a href="#inscricao" class="btn btn-secondary w-full h-12">
+        <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+        Garantir minha vaga
       </a>
     </div>
 
-    <!-- ============================== -->
-    <!-- SCRIPTS                       -->
-    <!-- ============================== -->
     <script src="script.js"></script>
   </body>
 </html>
