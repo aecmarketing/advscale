@@ -286,6 +286,9 @@
           .forEach((input) => (input.disabled = true));
         submitBtn.innerHTML =
           '<i class="fa-solid fa-circle-check" aria-hidden="true"></i> Enviado com sucesso!';
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", { form_id: "preRegisterForm" });
+        }
         setTimeout(() => {
           window.location.href = REDIRECT_URL;
         }, 2000);
@@ -318,7 +321,34 @@
   });
 
   // ============================================================
-  // 7. PROTEÇÃO DO LINK DE CHECKOUT
+  // 7. TRACKING DE CLIQUES (GA4)
+  // Dispara um evento a cada clique em CTA "Garantir vaga" e no
+  // envio do formulário. Não faz nada se o gtag não estiver
+  // carregado (ex: bloqueador de anúncios) — falha em silêncio.
+  // ============================================================
+  function trackEvent(name, params) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, params || {});
+    }
+  }
+
+  document
+    .querySelectorAll('a[href="#inscricao"], a[href*="kiwify"]')
+    .forEach(function (link) {
+      link.addEventListener("click", function () {
+        trackEvent("cta_click", {
+          cta_label: this.textContent.trim(),
+          cta_location: this.closest("section")
+            ? this.closest("section").id || "sem-id"
+            : "header",
+        });
+      });
+    });
+  // O envio do formulário já dispara o próprio evento de conversão
+  // logo depois do redirect, dentro do bloco de formulário abaixo.
+
+  // ============================================================
+  // 8. PROTEÇÃO DO LINK DE CHECKOUT
   // Garante que qualquer link marcado como CTA de pagamento
   // sempre aponte para o checkout oficial, mesmo se alguém
   // editar o href no HTML por engano.
